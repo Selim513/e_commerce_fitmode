@@ -10,6 +10,15 @@ abstract class AssetsHelper {
   }
 
   static Image image(String name) {
-    return Image.asset('assets/images/$name.png');
+    return Image.asset(
+      'assets/images/$name.png',
+    );
+  }
+
+  static SvgPicture icons({required String name}) {
+    return SvgPicture.asset(
+      'assets/icons/$name.svg',
+      width: 20,
+    );
   }
 }
