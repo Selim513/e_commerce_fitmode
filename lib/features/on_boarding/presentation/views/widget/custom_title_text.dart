@@ -13,7 +13,7 @@ class CustomTitleText extends StatelessWidget {
       padding: const EdgeInsets.only(top: 25),
       child: Text(
         ' Define \n yourself in\n your unique\n way.',
-        style: AppFontStyle.titleFonts,
+        style: AppFontStyle.titleFonts35,
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/create_account_body.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccountView extends StatelessWidget {
@@ -5,10 +6,6 @@ class CreateAccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Create Account Page'),
-      ),
-    );
+    return const Scaffold(body: CreateAccountBody());
   }
 }

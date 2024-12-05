@@ -14,6 +14,7 @@ class GetStartedBody extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10),
         child: Stack(
           children: [
+           
             AssetsHelper.svgPicture('Element1'),
             const CustomPersonImage(),
             const CustomTitleText(),
