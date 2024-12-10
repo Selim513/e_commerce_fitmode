@@ -6,8 +6,8 @@ class AuthCubit extends Cubit<AuthenticationState> {
   AuthCubit() : super(AuthenticationnitialState());
 
   createAccount(email, password) async {
+    emit(AuthenticationoadingState());
     try {
-      emit(AuthenticationoadingState());
       final AuthResponse res = await Supabase.instance.client.auth.signUp(
         email: email,
         password: password,

@@ -41,7 +41,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
         } else if (state is AuthenticationFailureState) {
           print('========================= ${state.errorMessage}');
         } else {
-          print('Erorrrrrrrrrrrrrrrrrrrrrrrr ==');
+          print('========Loading========');
         }
       },
       builder: (context, state) => Column(
