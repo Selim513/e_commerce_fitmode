@@ -1,8 +1,17 @@
-import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
+import 'package:e_commerce_fitmode/bloc_observer.dart';
+import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+      url: 'https://dnywzrldbacignhkwnkh.supabase.co',
+      anonKey:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRueXd6cmxkYmFjaWduaGt3bmtoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMxNzM3MDgsImV4cCI6MjA0ODc0OTcwOH0.1Aj5hLyq-kPaAlw8Kyaz9c3HQvOuQgnAgmG6lbNjUU4');
+  Bloc.observer = AppObserver();
   runApp(const MainApp());
 }
 
@@ -11,7 +20,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       theme: ThemeData(
         fontFamily: GoogleFonts.aBeeZee().fontFamily,
         colorScheme: const ColorScheme.light(
@@ -19,7 +28,7 @@ class MainApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const CreateAccountView(),
+      routerConfig: AppRoute.router,
     );
   }
 }
