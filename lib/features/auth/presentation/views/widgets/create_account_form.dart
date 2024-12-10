@@ -38,7 +38,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
       listener: (context, state) {
         if (state is AuthenticationSuccessState) {
           print('Success===========${state.successMessage}');
-          context.go(AppRoute.onBoarding);
+          context.goNamed(AppRoute.home);
         } else if (state is AuthenticationFailureState) {
           print('========================= ${state.errorMessage}');
         } else {

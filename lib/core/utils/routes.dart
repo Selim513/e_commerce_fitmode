@@ -1,4 +1,5 @@
 import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
+import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ abstract class AppRoute {
   static String onBoarding = '/';
   static String getStarted = '/getStarted';
   static String authCreateAccount = '/authCreateAccount';
+  static String home = '/home';
   static GoRouter router = GoRouter(
     errorBuilder: (context, state) {
       return const Scaffold(
@@ -30,11 +32,19 @@ abstract class AppRoute {
               },
               routes: <RouteBase>[
                 GoRoute(
-                  path: authCreateAccount,
-                  builder: (BuildContext context, GoRouterState state) {
-                    return const CreateAccountView();
-                  },
-                )
+                    path: authCreateAccount,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return const CreateAccountView();
+                    },
+                    routes: <RouteBase>[
+                      GoRoute(
+                        path: home,
+                        name: home,
+                        builder: (context, state) {
+                          return const HomeView();
+                        },
+                      )
+                    ])
               ]),
         ],
       ),
