@@ -1,3 +1,4 @@
+import 'package:e_commerce_fitmode/constant.dart';
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:e_commerce_fitmode/core/utils/text_field_helper.dart';
@@ -58,7 +59,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 ),
                 const Gap(5),
                 CustomTextFormField(
-                  fieldType: 'Name',
+                  fieldType: typeFieldName,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'this field is required';
@@ -80,7 +81,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 ),
                 const Gap(5),
                 CustomTextFormField(
-                  fieldType: 'Email',
+                  fieldType: typeFieldEmail,
                   dynamicSuffixIcon: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -100,7 +101,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 ),
                 const Gap(5),
                 CustomTextFormField(
-                  fieldType: 'Password',
+                  fieldType: typeFieldPassword,
                   dynamicSuffixIcon: true,
                   validator: (value) {
                     if (value!.isEmpty) {

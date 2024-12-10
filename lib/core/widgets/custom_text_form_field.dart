@@ -1,3 +1,4 @@
+import 'package:e_commerce_fitmode/constant.dart';
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/text_field_helper.dart';
 import 'package:flutter/material.dart';
@@ -39,11 +40,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       validator: widget.validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onChanged: (value) {
-        if (widget.fieldType == 'Name') {
+        if (widget.fieldType == typeFieldName) {
           isValid = value.isNotEmpty && value.length > 3;
-        } else if (widget.fieldType == 'Email') {
+        } else if (widget.fieldType == typeFieldEmail) {
           isValid = Validate.emailValidate(value);
-        } else if (widget.fieldType == 'Password') {
+        } else if (widget.fieldType == typeFieldPassword) {
           isValid = value.isNotEmpty && value.length >= 8;
         }
         check = value.isNotEmpty;
