@@ -1,4 +1,4 @@
-import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/create_account_form.dart';
+import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/Auth_form_section.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/custom_auth_headers.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
