@@ -1,4 +1,5 @@
 import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
+import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/on_boarding_view.dart';
@@ -10,6 +11,7 @@ abstract class AppRoute {
   static String getStarted = '/getStarted';
   static String authCreateAccount = '/authCreateAccount';
   static String home = '/home';
+  static String authLoginView = '/loginView';
   static GoRouter router = GoRouter(
     errorBuilder: (context, state) {
       return const Scaffold(
@@ -38,12 +40,18 @@ abstract class AppRoute {
                     },
                     routes: <RouteBase>[
                       GoRoute(
-                        path: home,
-                        name: home,
-                        builder: (context, state) {
-                          return const HomeView();
-                        },
-                      )
+                          path: home,
+                          name: home,
+                          builder: (context, state) {
+                            return const HomeView();
+                          },
+                          routes: <RouteBase>[
+                            GoRoute(
+                              path: authLoginView,
+                              name: authLoginView,
+                              builder: (context, state) => const LoginView(),
+                            )
+                          ])
                     ])
               ]),
         ],

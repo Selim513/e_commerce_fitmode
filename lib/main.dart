@@ -1,5 +1,6 @@
 import 'package:e_commerce_fitmode/bloc_observer.dart';
 import 'package:e_commerce_fitmode/core/utils/routes.dart';
+import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,15 +21,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(
-        fontFamily: GoogleFonts.aBeeZee().fontFamily,
-        colorScheme: const ColorScheme.light(
-          primary: Colors.black, // اللون الأساسي
+    return BlocProvider(
+      create: (context) => AuthCubit(),
+      child: MaterialApp.router(
+        theme: ThemeData(
+          fontFamily: GoogleFonts.aBeeZee().fontFamily,
+          colorScheme: const ColorScheme.light(
+            primary: Colors.black, // اللون الأساسي
+          ),
         ),
+        debugShowCheckedModeBanner: false,
+        routerConfig: AppRoute.router,
       ),
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRoute.router,
     );
   }
 }

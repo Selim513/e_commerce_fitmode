@@ -22,7 +22,9 @@ class CreateAccountBody extends StatelessWidget {
               subtitle: ' Let\'s create your account',
             ),
             Gap(25),
-            CreateAccountForm(),
+            AuthForm(
+              authSignUp: true,
+            ),
           ],
         ),
       ),

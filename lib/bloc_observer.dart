@@ -4,37 +4,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AppObserver implements BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
-    // TODO: implement onChange
     debugPrint(change.toString());
   }
 
   @override
   void onClose(BlocBase bloc) {
-    // TODO: implement onClose
     debugPrint(bloc.toString());
   }
 
   @override
   void onCreate(BlocBase bloc) {
-    // TODO: implement onCreate
     debugPrint(bloc.toString());
   }
 
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    // TODO: implement onError
     debugPrint(bloc.toString());
     debugPrint(error.toString());
     debugPrint(stackTrace.toString());
   }
 
   @override
-  void onEvent(Bloc bloc, Object? event) {
-    // TODO: implement onEvent
+  void onTransition(Bloc bloc, Transition transition) {
+    debugPrint('$transition');
   }
 
   @override
-  void onTransition(Bloc bloc, Transition transition) {
-    // TODO: implement onTransition
+  void onEvent(Bloc bloc, Object? event) {
+    debugPrint('$event');
   }
 }

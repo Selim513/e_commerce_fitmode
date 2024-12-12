@@ -1,17 +1,33 @@
 abstract class AuthenticationState {}
 
-class AuthenticationnitialState extends AuthenticationState {}
+class AuthInitialState extends AuthenticationState {}
 
-class AuthenticationSuccessState extends AuthenticationState {
+class CreateAccountSuccessState extends AuthenticationState {
   final String successMessage;
 
-  AuthenticationSuccessState({required this.successMessage});
+  CreateAccountSuccessState({required this.successMessage});
 }
 
-class AuthenticationFailureState extends AuthenticationState {
+class CreateAccountFailureState extends AuthenticationState {
   final String errorMessage;
 
-  AuthenticationFailureState({required this.errorMessage});
+  CreateAccountFailureState({required this.errorMessage});
 }
 
-class AuthenticationoadingState extends AuthenticationState {}
+class CreateAccountLoadingState extends AuthenticationState {}
+
+//-----------------------Signin State------------------------------
+
+class SigininAccountSuccessState extends AuthenticationState {
+  final String successMessage;
+
+  SigininAccountSuccessState({required this.successMessage});
+}
+
+class SigininAccountFailureState extends AuthenticationState {
+  final String errorMessage;
+
+  SigininAccountFailureState({required this.errorMessage});
+}
+
+class SigininAccountLoadingState extends AuthenticationState {}

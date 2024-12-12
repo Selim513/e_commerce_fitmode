@@ -19,7 +19,7 @@ class CustomAuthHeaders extends StatelessWidget {
           title,
           style: AppFontStyle.titleFonts30,
         ),
-        const Gap(15),
+        const Gap(10),
         Text(subtitle, style: AppFontStyle.greyFont15),
       ],
     );
