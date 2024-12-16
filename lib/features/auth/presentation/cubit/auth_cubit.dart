@@ -4,7 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthCubit extends Cubit<AuthenticationState> {
   AuthCubit() : super(AuthInitialState());
-
+  //Create Account method
   createAccount(email, password) async {
     emit(CreateAccountLoadingState());
     try {
@@ -22,6 +22,7 @@ class AuthCubit extends Cubit<AuthenticationState> {
     }
   }
 
+// Login method
   sigininAccount({password, email}) async {
     emit(SigininAccountLoadingState());
     try {
@@ -35,6 +36,19 @@ class AuthCubit extends Cubit<AuthenticationState> {
       emit(SigininAccountSuccessState(successMessage: 'Welcome Back'));
     } catch (e) {
       emit(SigininAccountFailureState(errorMessage: e.toString()));
+    }
+  }
+
+  // Reset Password method
+  sendResetPasswordLink({email}) async {
+    try {
+      await Supabase.instance.client.auth.resetPasswordForEmail(email,
+          redirectTo: 'com.example.e_commerce_fitmode://reset-password');
+      emit(ResetPasswordLinkSuccessState(
+          successMessage: 'Password reset link sent to your email'));
+    } catch (e) {
+      print(e);
+      emit(ResetPasswordLinkFailureState(errorMessage: e.toString()));
     }
   }
 }

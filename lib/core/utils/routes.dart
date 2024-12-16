@@ -1,5 +1,6 @@
 import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
+import 'package:e_commerce_fitmode/features/auth/presentation/views/password_reset_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/on_boarding_view.dart';
@@ -12,6 +13,8 @@ abstract class AppRoute {
   static String authCreateAccount = '/authCreateAccount';
   static String home = '/home';
   static String authLoginView = '/loginView';
+  static String resetPassword = '/resetPassword';
+
   static GoRouter router = GoRouter(
     errorBuilder: (context, state) {
       return const Scaffold(
@@ -29,12 +32,14 @@ abstract class AppRoute {
         routes: <RouteBase>[
           GoRoute(
               path: getStarted,
+              name: getStarted,
               builder: (BuildContext context, GoRouterState state) {
                 return const GetStartedView();
               },
               routes: <RouteBase>[
                 GoRoute(
                     path: authCreateAccount,
+                    name: authCreateAccount,
                     builder: (BuildContext context, GoRouterState state) {
                       return const CreateAccountView();
                     },
@@ -47,12 +52,19 @@ abstract class AppRoute {
                           },
                           routes: <RouteBase>[
                             GoRoute(
-                              path: authLoginView,
-                              name: authLoginView,
-                              builder: (context, state) => const LoginView(),
-                            )
+                                path: authLoginView,
+                                name: authLoginView,
+                                builder: (context, state) => const LoginView(),
+                                routes: <RouteBase>[
+                                  GoRoute(
+                                    path: resetPassword,
+                                    name: resetPassword,
+                                    builder: (context, state) =>
+                                        const PasswordResetView(),
+                                  )
+                                ])
                           ])
-                    ])
+                    ]),
               ]),
         ],
       ),

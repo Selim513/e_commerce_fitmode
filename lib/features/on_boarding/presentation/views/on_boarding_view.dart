@@ -35,7 +35,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   Future<void> _onBoardinnextPage() async {
     await Future.delayed(const Duration(seconds: 2)).then(
       (value) {
-        context.go(AppRoute.getStarted);
+        GoRouter.of(context).replaceNamed(AppRoute.getStarted);
       },
     );
   }

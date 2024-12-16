@@ -19,8 +19,7 @@ class CustomGetStartedButton extends StatelessWidget {
       right: 10,
       child: CustomElevatedButton(
         onPress: () {
-          context
-              .replace('${AppRoute.getStarted}${AppRoute.authCreateAccount}');
+          GoRouter.of(context).pushReplacementNamed(AppRoute.authCreateAccount);
         },
         widget: Row(
           mainAxisAlignment: MainAxisAlignment.center,

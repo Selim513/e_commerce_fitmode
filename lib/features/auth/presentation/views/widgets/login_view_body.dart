@@ -8,17 +8,19 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CustomAuthHeaders(
-            title: 'Login to your account',
-            subtitle: 'It’s great to see you again.'),
-        Gap(30),
-        AuthForm(
-          authSignUp: false,
-        ),
-      ],
+    return const SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomAuthHeaders(
+              title: 'Login to your account',
+              subtitle: 'It’s great to see you again.'),
+          Gap(30),
+          AuthForm(
+            authSignUp: false,
+          ),
+        ],
+      ),
     );
   }
 }

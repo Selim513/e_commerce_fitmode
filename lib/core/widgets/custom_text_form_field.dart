@@ -14,6 +14,7 @@ class CustomTextFormField extends StatefulWidget {
     this.obsecure,
     required this.dynamicSuffixIcon,
     required this.fieldType,
+    this.isLogin,
   });
   final void Function(String value)? onChanged;
   final String? Function(String? value)? validator;
@@ -23,6 +24,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool? obsecure;
   final bool dynamicSuffixIcon;
   final String fieldType;
+  final bool? isLogin;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -53,23 +55,23 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         widget.onChanged?.call(value);
       },
       decoration: InputDecoration(
-          focusedBorder:
-              outLineBorders(color: isValid ? Colors.green : Colors.red),
-          enabledBorder: outLineBorders(color: const Color(0xffE6E6E6)),
-          focusedErrorBorder: outLineBorders(color: Colors.red),
-          errorBorder: outLineBorders(color: Colors.red),
-          hintText: widget.hinttText,
-          hintStyle: AppFontStyle.greyFont15,
-          suffixIcon:
-              widget.dynamicSuffixIcon && widget.controller!.text.isEmpty
-                  ? null
-                  : (check
-                      ? isValid
-                          ? const Icon(Icons.check_circle_outline,
-                              color: Colors.green)
-                          : const Icon(Icons.error_outline_outlined,
-                              color: Colors.red)
-                      : null)),
+        focusedBorder:
+            outLineBorders(color: isValid ? Colors.green : Colors.red),
+        enabledBorder: outLineBorders(color: const Color(0xffE6E6E6)),
+        focusedErrorBorder: outLineBorders(color: Colors.red),
+        errorBorder: outLineBorders(color: Colors.red),
+        hintText: widget.hinttText,
+        hintStyle: AppFontStyle.greyFont15,
+        suffixIcon: widget.dynamicSuffixIcon && widget.controller!.text.isEmpty
+            ? widget.suffixIcon
+            : (check
+                ? isValid
+                    ? const Icon(Icons.check_circle_outline,
+                        color: Colors.green)
+                    : const Icon(Icons.error_outline_outlined,
+                        color: Colors.red)
+                : null),
+      ),
     );
   }
 
