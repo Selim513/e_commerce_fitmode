@@ -1,6 +1,7 @@
 import 'package:e_commerce_fitmode/constant.dart';
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
-import 'package:e_commerce_fitmode/core/utils/text_field_helper.dart';
+import 'package:e_commerce_fitmode/core/utils/helper.dart';
+import 'package:e_commerce_fitmode/core/utils/validate_helper.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -56,10 +57,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       },
       decoration: InputDecoration(
         focusedBorder:
-            outLineBorders(color: isValid ? Colors.green : Colors.red),
-        enabledBorder: outLineBorders(color: const Color(0xffE6E6E6)),
-        focusedErrorBorder: outLineBorders(color: Colors.red),
-        errorBorder: outLineBorders(color: Colors.red),
+            customOutLineBorders(color: isValid ? Colors.green : Colors.red),
+        enabledBorder: customOutLineBorders(color: const Color(0xffE6E6E6)),
+        focusedErrorBorder: customOutLineBorders(color: Colors.red),
+        errorBorder: customOutLineBorders(color: Colors.red),
         hintText: widget.hinttText,
         hintStyle: AppFontStyle.greyFont15,
         suffixIcon: widget.dynamicSuffixIcon && widget.controller!.text.isEmpty
@@ -75,9 +76,4 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     );
   }
 
-  OutlineInputBorder outLineBorders({Color? color}) {
-    return OutlineInputBorder(
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
-        borderSide: BorderSide(color: color ?? const Color(0xffE6E6E6)));
-  }
 }

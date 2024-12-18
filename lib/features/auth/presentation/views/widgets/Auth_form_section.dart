@@ -2,7 +2,7 @@ import 'package:e_commerce_fitmode/constant.dart';
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/helper.dart';
 import 'package:e_commerce_fitmode/core/utils/routes.dart';
-import 'package:e_commerce_fitmode/core/utils/text_field_helper.dart';
+import 'package:e_commerce_fitmode/core/utils/validate_helper.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_elevated_button.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_text_form_field.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';

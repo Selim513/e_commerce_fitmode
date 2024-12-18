@@ -3,15 +3,16 @@ import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/widget/custom_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class OnBoardingView extends StatefulWidget {
-  const OnBoardingView({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<OnBoardingView> createState() => _OnBoardingViewState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _OnBoardingViewState extends State<OnBoardingView> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -33,9 +34,14 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   }
 
   Future<void> _onBoardinnextPage() async {
+    final seesion = Supabase.instance.client.auth.currentSession;
     await Future.delayed(const Duration(seconds: 2)).then(
       (value) {
-        GoRouter.of(context).replaceNamed(AppRoute.getStarted);
+        if (seesion != null) {
+          GoRouter.of(context).pushReplacementNamed(AppRoute.bottomNavBar);
+        } else {
+          GoRouter.of(context).replaceNamed(AppRoute.getStarted);
+        }
       },
     );
   }

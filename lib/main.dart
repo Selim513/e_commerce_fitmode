@@ -31,6 +31,7 @@ class MainApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
+        // home: const HomeView(),
         routerConfig: AppRoute.router,
       ),
     );

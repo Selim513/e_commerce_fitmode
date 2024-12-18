@@ -1,5 +1,5 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
-import 'package:e_commerce_fitmode/core/utils/text_field_helper.dart';
+import 'package:e_commerce_fitmode/core/utils/validate_helper.dart';
 import 'package:flutter/material.dart';
 
 void customScaffoldMessenger(BuildContext context,
@@ -31,4 +31,10 @@ String? checkPasswordValidator(String? value) {
     return 'Password must be bigger than 7 letters and numbers';
   }
   return null;
+}
+
+OutlineInputBorder customOutLineBorders({Color? color, double? circular}) {
+  return OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(circular ?? 15)),
+      borderSide: BorderSide(color: color ?? const Color(0xffE6E6E6)));
 }
