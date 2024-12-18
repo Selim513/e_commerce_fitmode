@@ -7,15 +7,17 @@ class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField({
     super.key,
     required this.readOnly,
-    this.onTap,
+    this.onTap, this.focusNode,
   });
   final bool readOnly;
   final void Function()? onTap;
+   final FocusNode?  focusNode;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       readOnly: readOnly,
+      focusNode: focusNode,
       onTap: onTap,
       decoration: InputDecoration(
           hintText: 'Search for clothes...',
