@@ -4,7 +4,7 @@ import 'package:e_commerce_fitmode/features/auth/presentation/views/password_res
 import 'package:e_commerce_fitmode/features/home/presentation/views/notification_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/saved_item_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/search_view.dart';
-import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_bottom_nav_bar.dart';
+import 'package:e_commerce_fitmode/core/widgets/custom_bottom_nav_bar.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/splash_view_screen_view.dart';
 import 'package:go_router/go_router.dart';
