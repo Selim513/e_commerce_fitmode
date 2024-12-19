@@ -13,9 +13,10 @@ abstract class AppFontStyle {
       fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500);
   static TextStyle underLineText = const TextStyle(
     fontSize: 13,
+
     color: Colors.black,
     fontWeight: FontWeight.bold,
-    decorationThickness: 2.0, // Customize underline thickness
+    decorationThickness: 1.0, // Customize underline thickness
 
     decoration: TextDecoration.underline,
   );

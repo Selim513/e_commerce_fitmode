@@ -2,6 +2,7 @@ import 'package:e_commerce_fitmode/features/auth/presentation/views/create_accou
 import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/password_reset_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/notification_view.dart';
+import 'package:e_commerce_fitmode/features/home/presentation/views/saved_item_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/search_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_bottom_nav_bar.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
@@ -19,6 +20,7 @@ abstract class AppRoute {
   static const String bottomNavBar = '/navBar';
   static const String notification = '/notification';
   static const String search = '/search';
+  static const String savedItem = '/savedItem';
 
   static GoRouter router =
       GoRouter(initialLocation: splashScreen, routes: <RouteBase>[
@@ -69,6 +71,11 @@ abstract class AppRoute {
             name: search,
             builder: (context, state) => const SearchView(),
           ),
+          GoRoute(
+            path: savedItem,
+            name: savedItem,
+            builder: (context, state) => const SavedItemView(),
+          )
         ])
   ]);
 }
