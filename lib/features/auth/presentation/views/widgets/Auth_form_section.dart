@@ -56,7 +56,6 @@ class _AuthFormState extends State<AuthForm> {
                         ),
                         const Gap(5),
                         CustomTextFormField(
-                        
                           fieldType: typeFieldName,
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -82,7 +81,6 @@ class _AuthFormState extends State<AuthForm> {
               ),
               const Gap(5),
               CustomTextFormField(
-                
                 fieldType: typeFieldEmail,
                 dynamicSuffixIcon: true,
                 validator: (value) {
@@ -148,7 +146,7 @@ class _AuthFormState extends State<AuthForm> {
               style: AppFontStyle.buttonTextStyle,
             )),
         const Gap(10),
-        const CustomDivider(),
+        const CustomOrDivider(),
         const Gap(10),
         CustomGoogleRegistrationButton(
           registrationType: widget.authSignUp ? 'Sign Up' : 'Login',

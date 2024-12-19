@@ -3,6 +3,8 @@ import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/assets_helper.dart';
 import 'package:flutter/material.dart';
 
+import 'custom_product_image.dart';
+
 class CutomProductsItem extends StatelessWidget {
   const CutomProductsItem({
     super.key,
@@ -16,10 +18,7 @@ class CutomProductsItem extends StatelessWidget {
           spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: AssetsHelper.image('product'),
-            ),
+            CustomProductImage(),
             Text(
               'Regular Fit Slogan',
               style: AppFontStyle.reqgularFont
@@ -45,3 +44,4 @@ class CutomProductsItem extends StatelessWidget {
     );
   }
 }
+
