@@ -19,7 +19,8 @@ class CustomHomeAppbar extends StatelessWidget {
           ),
           const Spacer(),
           GestureDetector(
-              onTap: () => GoRouter.of(context).goNamed(AppRoute.notification),
+              onTap: () =>
+                  GoRouter.of(context).pushNamed(AppRoute.notification),
               child: AssetsHelper.icons(name: 'Bell', width: 25))
         ],
       ),
