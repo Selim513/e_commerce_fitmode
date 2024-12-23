@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
@@ -12,8 +11,8 @@ class CustomDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Divider(
       color: AppColors.greycolor,
-      indent: 5,
-      endIndent: 5,
+      indent: 20,
+      endIndent: 20,
     );
   }
 }

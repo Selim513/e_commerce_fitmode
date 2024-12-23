@@ -1,4 +1,4 @@
-import 'package:e_commerce_fitmode/features/home/presentation/views/search_view.dart';
+import 'package:e_commerce_fitmode/features/search/presentation/views/search_view.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_recent_search_result_item.dart';

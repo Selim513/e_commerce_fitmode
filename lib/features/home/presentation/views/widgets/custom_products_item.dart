@@ -1,8 +1,7 @@
-
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
-import 'package:e_commerce_fitmode/core/utils/assets_helper.dart';
 import 'package:flutter/material.dart';
 
+import 'custom_positioned_saved_heart.dart';
 import 'custom_product_image.dart';
 
 class CutomProductsItem extends StatelessWidget {
@@ -18,7 +17,7 @@ class CutomProductsItem extends StatelessWidget {
           spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomProductImage(),
+            const CustomProductImage(),
             Text(
               'Regular Fit Slogan',
               style: AppFontStyle.reqgularFont
@@ -30,18 +29,8 @@ class CutomProductsItem extends StatelessWidget {
             )
           ],
         ),
-        Positioned(
-          right: 15,
-          top: 10,
-          child: Container(
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            child: AssetsHelper.icons(name: 'Heart'),
-          ),
-        ),
+        const CustomPositionedSavedHeart(),
       ],
     );
   }
 }
-

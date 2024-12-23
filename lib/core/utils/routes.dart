@@ -1,12 +1,13 @@
+import 'package:e_commerce_fitmode/core/widgets/custom_bottom_nav_bar.dart';
+import 'package:e_commerce_fitmode/features/account/presentation/views/account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/password_reset_view.dart';
-import 'package:e_commerce_fitmode/features/home/presentation/views/notification_view.dart';
-import 'package:e_commerce_fitmode/features/home/presentation/views/saved_item_view.dart';
-import 'package:e_commerce_fitmode/features/home/presentation/views/search_view.dart';
-import 'package:e_commerce_fitmode/core/widgets/custom_bottom_nav_bar.dart';
+import 'package:e_commerce_fitmode/features/notification/presentation/views/notification_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/splash_view_screen_view.dart';
+import 'package:e_commerce_fitmode/features/search/presentation/views/search_view.dart';
+import 'package:e_commerce_fitmode/features/saved_item/presentation/views/saved_item_view.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRoute {
@@ -21,6 +22,7 @@ abstract class AppRoute {
   static const String notification = '/notification';
   static const String search = '/search';
   static const String savedItem = '/savedItem';
+  static const String account = '/account';
 
   static GoRouter router =
       GoRouter(initialLocation: splashScreen, routes: <RouteBase>[
@@ -57,25 +59,29 @@ abstract class AppRoute {
       ],
     ),
     GoRoute(
-        path: bottomNavBar,
-        name: bottomNavBar,
-        builder: (context, state) => const CustomBottomNavBar(),
-        routes: <RouteBase>[
-          GoRoute(
-            path: notification,
-            name: notification,
-            builder: (context, state) => const NotificationView(),
-          ),
-          GoRoute(
-            path: search,
-            name: search,
-            builder: (context, state) => const SearchView(),
-          ),
-          GoRoute(
-            path: savedItem,
-            name: savedItem,
-            builder: (context, state) => const SavedItemView(),
-          )
-        ])
+      path: bottomNavBar,
+      name: bottomNavBar,
+      builder: (context, state) => const CustomBottomNavBar(),
+    ),
+    GoRoute(
+      path: notification,
+      name: notification,
+      builder: (context, state) => const NotificationView(),
+    ),
+    GoRoute(
+      path: search,
+      name: search,
+      builder: (context, state) => const SearchView(),
+    ),
+    GoRoute(
+      path: savedItem,
+      name: savedItem,
+      builder: (context, state) => const SavedItemView(),
+    ),
+    GoRoute(
+      path: account,
+      name: account,
+      builder: (context, state) => const AccountView(),
+    )
   ]);
 }

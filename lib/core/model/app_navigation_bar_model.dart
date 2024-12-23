@@ -13,7 +13,9 @@ List<AppNavigationBarModel> navBarItemList = [
       icon: const Icon(FluentIcons.home_12_regular), title: 'Home'),
   AppNavigationBarModel(
       icon: const Icon(CupertinoIcons.search), title: 'Search'),
-  AppNavigationBarModel(icon: const Icon(CupertinoIcons.heart), title: 'Heart'),
+  AppNavigationBarModel(icon: const Icon(CupertinoIcons.heart), title: 'Saved'),
+  AppNavigationBarModel(
+      icon: const Icon(FluentIcons.cart_16_regular), title: 'My Cart'),
   AppNavigationBarModel(
       icon: const Icon(FluentIcons.person_circle_12_regular), title: 'Account'),
 ];

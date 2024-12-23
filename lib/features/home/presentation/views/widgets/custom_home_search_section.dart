@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-import 'custom_search_textfield.dart';
+import 'custom_home_search_textfield.dart';
 
 class CustomSearchSection extends StatelessWidget {
   const CustomSearchSection({super.key});

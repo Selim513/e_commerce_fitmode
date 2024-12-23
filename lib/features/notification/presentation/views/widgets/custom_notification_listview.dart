@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_result_listview_item.dart';
+import 'custom_notification_card.dart';
 
-class CustomSearchResultListView extends StatelessWidget {
-  const CustomSearchResultListView({
+class CustomNotificationListView extends StatelessWidget {
+  const CustomNotificationListView({
     super.key,
   });
 
@@ -14,7 +13,7 @@ class CustomSearchResultListView extends StatelessWidget {
         child: ListView.builder(
       itemCount: 5,
       itemBuilder: (context, index) {
-        return const CustomSearchResultListViewItem();
+        return const CustomNotificationCard();
       },
     ));
   }

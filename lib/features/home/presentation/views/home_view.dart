@@ -1,5 +1,5 @@
 import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_home_appbar.dart';
-import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_search_section.dart';
+import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_home_search_section.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

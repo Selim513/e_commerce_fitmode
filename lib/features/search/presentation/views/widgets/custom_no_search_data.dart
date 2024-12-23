@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'custom_no_notification_body.dart';
+import '../../../../notification/presentation/views/widgets/custom_no_notification_body.dart';
 
 class CustomNoSerachData extends StatelessWidget {
   const CustomNoSerachData({
