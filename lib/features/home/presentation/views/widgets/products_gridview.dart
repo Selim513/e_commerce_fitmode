@@ -13,7 +13,7 @@ class ProductsGridVew extends StatelessWidget {
         child: GridView.builder(
       itemCount: 10,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 300, childAspectRatio: 0.7),
+          crossAxisSpacing: 15, maxCrossAxisExtent: 300, childAspectRatio: 0.7),
       itemBuilder: (context, index) {
         return const CutomProductsItem();
       },

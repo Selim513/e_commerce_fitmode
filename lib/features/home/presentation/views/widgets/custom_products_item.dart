@@ -1,8 +1,7 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_positioned_saved_heart.dart';
-import 'custom_product_image.dart';
+import 'cusotm_product_item_with_saved_icon.dart';
 
 class CutomProductsItem extends StatelessWidget {
   const CutomProductsItem({
@@ -11,25 +10,20 @@ class CutomProductsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
+      spacing: 5,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          spacing: 10,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomProductImage(),
-            Text(
-              'Regular Fit Slogan',
-              style: AppFontStyle.reqgularFont
-                  .copyWith(fontWeight: FontWeight.w500),
-            ),
-            Text(
-              '\$ 1,190',
-              style: AppFontStyle.greyFont15,
-            )
-          ],
+        const CustomProductItemWithSavedIcon(),
+        Text(
+          'Regular Fit Slogan',
+          style:
+              AppFontStyle.reqgularFont.copyWith(fontWeight: FontWeight.w500),
         ),
-        const CustomPositionedSavedHeart(),
+        Text(
+          '\$ 1,190',
+          style: AppFontStyle.greyFont15,
+        )
       ],
     );
   }

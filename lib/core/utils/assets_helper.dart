@@ -9,9 +9,10 @@ abstract class AssetsHelper {
     );
   }
 
-  static Image image(String name) {
+  static Image image(String name, {BoxFit? fit}) {
     return Image.asset(
       'assets/images/$name.png',
+      // fit: BoxFit.cover,
     );
   }
 
