@@ -13,25 +13,20 @@ class CustomGetStartedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 5,
-      left: 10,
-      right: 10,
-      child: CustomElevatedButton(
-        onPress: () {
-          GoRouter.of(context).pushReplacementNamed(AppRoute.authCreateAccount);
-        },
-        widget: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Get Started',
-              style: AppFontStyle.buttonTextStyle,
-            ),
-            const Gap(5),
-            AssetsHelper.icons(name: 'arrow-right'),
-          ],
-        ),
+    return CustomElevatedButton(
+      onPress: () {
+        GoRouter.of(context).pushReplacementNamed(AppRoute.authCreateAccount);
+      },
+      widget: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Get Started',
+            style: AppFontStyle.buttonTextStyle,
+          ),
+          const Gap(5),
+          AssetsHelper.icons(name: 'arrow-right'),
+        ],
       ),
     );
   }

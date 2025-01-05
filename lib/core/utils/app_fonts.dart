@@ -4,7 +4,7 @@ abstract class AppFontStyle {
   static TextStyle buttonTextStyle =
       const TextStyle(fontSize: 16, color: Colors.white);
   static TextStyle titleFonts35 =
-      const TextStyle(fontSize: 35, fontWeight: FontWeight.bold);
+      const TextStyle(fontSize: 40, fontWeight: FontWeight.bold);
   static TextStyle titleFonts30 =
       const TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static TextStyle greyFont15 = const TextStyle(

@@ -1,13 +1,16 @@
+import 'package:e_commerce_fitmode/core/utils/size_config.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_bottom_nav_bar.dart';
 import 'package:e_commerce_fitmode/features/account/presentation/views/account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/password_reset_view.dart';
+import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
+import 'package:e_commerce_fitmode/features/home/presentation/views/product_details_view.dart';
 import 'package:e_commerce_fitmode/features/notification/presentation/views/notification_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/splash_view_screen_view.dart';
-import 'package:e_commerce_fitmode/features/search/presentation/views/search_view.dart';
 import 'package:e_commerce_fitmode/features/saved_item/presentation/views/saved_item_view.dart';
+import 'package:e_commerce_fitmode/features/search/presentation/views/search_view.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRoute {
@@ -18,19 +21,23 @@ abstract class AppRoute {
   static const String authLoginView = '$auth/login';
   static const String resetPassword = '$auth/reset-password';
   static const String home = '/home';
+  static const String productDetails = '$home/productDetails';
   static const String bottomNavBar = '/navBar';
   static const String notification = '/notification';
   static const String search = '/search';
   static const String savedItem = '/savedItem';
   static const String account = '/account';
+  static const String reviews = '/reviews';
 
   static GoRouter router =
       GoRouter(initialLocation: splashScreen, routes: <RouteBase>[
     GoRoute(
-      path: splashScreen,
-      name: splashScreen,
-      builder: (context, state) => const SplashScreen(),
-    ),
+        path: splashScreen,
+        name: splashScreen,
+        builder: (context, state) {
+          SizeConfig.init(context);
+          return const SplashScreen();
+        }),
     GoRoute(
       path: getStarted,
       name: getStarted,
@@ -58,6 +65,17 @@ abstract class AppRoute {
         ),
       ],
     ),
+    GoRoute(
+        path: home,
+        name: home,
+        builder: (context, state) => const HomeView(),
+        routes: <RouteBase>[
+          GoRoute(
+            path: productDetails,
+            name: productDetails,
+            builder: (context, state) => const ProductsDetails(),
+          )
+        ]),
     GoRoute(
       path: bottomNavBar,
       name: bottomNavBar,

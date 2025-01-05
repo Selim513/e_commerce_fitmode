@@ -11,14 +11,20 @@ class GetStartedBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Stack(
+        padding: const EdgeInsets.only(top: 15),
+        child: Column(
           children: [
-           
-            AssetsHelper.svgPicture('Element1'),
-            const CustomPersonImage(),
-            const CustomTitleText(),
-            const CustomGetStartedButton(),
+            Stack(
+              children: [
+                AssetsHelper.svgPicture('Element1'),
+                const CustomTitleText(),
+                const CustomPersonImage(),
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: CustomGetStartedButton(),
+            ),
           ],
         ),
       ),
