@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../notification/presentation/views/widgets/custom_no_notification_body.dart';
@@ -17,8 +16,7 @@ class CustomNoSerachData extends StatelessWidget {
           CustomNoDatataWidget(
               iconName: 'Search-duotone',
               title: 'No Results Found!',
-              subTitle:
-                  'Try a similar word or something\n more general.'),
+              subTitle: 'Try a similar word or something\n more general.'),
         ],
       ),
     );

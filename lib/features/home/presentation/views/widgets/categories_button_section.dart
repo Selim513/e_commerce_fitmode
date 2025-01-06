@@ -1,5 +1,3 @@
-
-
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:e_commerce_fitmode/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';

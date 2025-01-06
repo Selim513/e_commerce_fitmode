@@ -7,7 +7,12 @@ class MyCartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('My Cart',style: AppFontStyle.titleFonts35,),),
+      body: Center(
+        child: Text(
+          'My Cart',
+          style: AppFontStyle.titleFonts35,
+        ),
+      ),
     );
   }
 }

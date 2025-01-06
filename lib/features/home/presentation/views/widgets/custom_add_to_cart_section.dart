@@ -1,4 +1,3 @@
-
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_elevated_button.dart';
 import 'package:flutter/cupertino.dart';

@@ -10,7 +10,6 @@ class NotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
         appBar: CustomPrimariyAppBar(
-          
           appBarTitle: 'Notifications',
         ),
         body: CustomNotificationDataCenter()

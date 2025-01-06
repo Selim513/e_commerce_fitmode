@@ -1,4 +1,3 @@
-
 import 'package:e_commerce_fitmode/core/utils/app_colors.dart';
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:flutter/cupertino.dart';

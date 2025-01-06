@@ -1,4 +1,5 @@
 import 'package:e_commerce_fitmode/bloc_observer.dart';
+import 'package:e_commerce_fitmode/core/utils/services_locator.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ void main() async {
       anonKey:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRueXd6cmxkYmFjaWduaGt3bmtoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMxNzM3MDgsImV4cCI6MjA0ODc0OTcwOH0.1Aj5hLyq-kPaAlw8Kyaz9c3HQvOuQgnAgmG6lbNjUU4');
   Bloc.observer = AppObserver();
+  setup();
   runApp(const MainApp());
 }
 

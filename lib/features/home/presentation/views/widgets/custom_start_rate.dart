@@ -5,7 +5,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class CustomStarRate extends StatelessWidget {
   const CustomStarRate({
     super.key,
-    required this.size, this.initialRate,
+    required this.size,
+    this.initialRate,
   });
   final double size;
   final double? initialRate;
@@ -14,7 +15,7 @@ class CustomStarRate extends StatelessWidget {
   Widget build(BuildContext context) {
     return RatingBar.builder(
       ignoreGestures: true,
-      initialRating: initialRate?? 4.0, // Displaying the current rating
+      initialRating: initialRate ?? 4.0, // Displaying the current rating
       minRating: 1,
       itemCount: 5,
       itemSize: size, // Size of each star

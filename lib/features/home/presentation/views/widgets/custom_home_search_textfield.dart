@@ -7,11 +7,12 @@ class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField({
     super.key,
     required this.readOnly,
-    this.onTap, this.focusNode,
+    this.onTap,
+    this.focusNode,
   });
   final bool readOnly;
   final void Function()? onTap;
-   final FocusNode?  focusNode;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {

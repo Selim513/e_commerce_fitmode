@@ -33,7 +33,6 @@ class CustomNoDatataWidget extends StatelessWidget {
             title,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             textAlign: TextAlign.center,
-            
           ),
           Text(
             subTitle,
