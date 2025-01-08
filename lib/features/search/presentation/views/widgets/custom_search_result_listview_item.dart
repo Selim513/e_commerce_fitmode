@@ -1,5 +1,4 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
-import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_product_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +15,7 @@ class CustomSearchResultListViewItem extends StatelessWidget {
       children: [
         ListTile(
           minVerticalPadding: 25,
-          leading: const CustomProductImage(),
+          // leading: const CustomProductImage(),
           title: Text(
             'Regular Fit Slogan',
             style:

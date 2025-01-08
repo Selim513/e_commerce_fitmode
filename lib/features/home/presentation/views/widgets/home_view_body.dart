@@ -1,4 +1,4 @@
-import 'package:e_commerce_fitmode/features/home/presentation/views/home_cubit/home_cubit.dart';
+import 'package:e_commerce_fitmode/features/home/presentation/views/manger/get_all_products_cubit.dart/home_cubit.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/categories_button_section.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_home_appbar.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_home_search_section.dart';
@@ -21,7 +21,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    BlocProvider.of<AllProductCubit>(context).getAllProduct();
+    BlocProvider.of<ProductsCubit>(context).getAllProduct();
+    // BlocProvider.of<ProductsCubit>(context).getByCategories();
   }
 
   @override
