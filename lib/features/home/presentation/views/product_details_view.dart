@@ -1,6 +1,7 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_divider.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_primary_appbar.dart';
+import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/custom_add_to_cart_section.dart';
@@ -11,8 +12,8 @@ import 'widgets/custom_size_button_section.dart';
 ///--------هنشيل كل دا وهنعملها CustomImageDetails  يبقا ليها لوحدها لحد مانلاقيلها حل
 
 class ProductsDetails extends StatelessWidget {
-  const ProductsDetails({super.key});
-
+  const ProductsDetails({super.key, required this.products});
+  final ProductsModel products;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +25,18 @@ class ProductsDetails extends StatelessWidget {
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Center(
-                  child: CustomProductDetailImage(),
+                Center(
+                  child: CustomProductDetailImage(
+                    image: products.image?? '',
+                  ),
                 ),
                 Text(
-                  'Regular Fit Slogan',
+                  products.title ?? '',
                   style: AppFontStyle.titleFonts30.copyWith(fontSize: 25),
                 ),
-                const CustomDetailReviewSextion(),
+                 CustomDetailReviewSextion(rate: products.rating,),
                 Text(
-                  'The name says it all, the right size slightly snugs the body leaving enough room for comfort in the sleeves and waist.',
+                  products.description ?? '',
                   style: AppFontStyle.greyFont15.copyWith(fontSize: 17),
                 ),
                 Text(
@@ -42,7 +45,9 @@ class ProductsDetails extends StatelessWidget {
                 ),
                 const CustomSizeButton(),
                 const CustomDivider(),
-                const CustomAddToCartSection(),
+                CustomAddToCartSection(
+                  price: products.price ?? 0,
+                ),
               ],
             ),
           )),

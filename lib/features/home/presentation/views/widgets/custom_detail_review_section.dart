@@ -1,10 +1,14 @@
+import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/rating.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_fonts.dart';
 
 class CustomDetailReviewSextion extends StatelessWidget {
-  const CustomDetailReviewSextion({super.key});
-
+  const CustomDetailReviewSextion({
+    super.key,
+    required this.rate,
+  });
+  final Rating? rate;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,11 +19,11 @@ class CustomDetailReviewSextion extends StatelessWidget {
           color: Colors.amber,
         ),
         Text(
-          '4.0/5',
+          '${rate?.rate ?? 0.0}',
           style: AppFontStyle.underLineText.copyWith(fontSize: 15),
         ),
         Text(
-          '(45 reviews)',
+          '(${rate?.count ?? 0} reviews)',
           style: AppFontStyle.greyFont15,
         ),
       ],

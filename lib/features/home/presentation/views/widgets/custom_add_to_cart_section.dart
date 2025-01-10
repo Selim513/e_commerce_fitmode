@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomAddToCartSection extends StatelessWidget {
-  const CustomAddToCartSection({super.key});
+  const CustomAddToCartSection({super.key, required this.price});
+  final double price;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class CustomAddToCartSection extends StatelessWidget {
                 style: AppFontStyle.greyFont15,
               ),
               Text(
-                '\$ Price',
+                '\$ $price',
                 style: AppFontStyle.reqgularFont.copyWith(fontSize: 25),
               ),
             ],

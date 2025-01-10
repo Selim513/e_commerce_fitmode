@@ -1,11 +1,9 @@
-import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/manger/get_all_products_cubit.dart/home_cubit.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/manger/get_all_products_cubit.dart/home_state_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
-import 'custom_products_item.dart';
+import 'product_grid_view_success_state.dart';
 
 class ProductsGridVew extends StatelessWidget {
   const ProductsGridVew({
@@ -18,22 +16,7 @@ class ProductsGridVew extends StatelessWidget {
       builder: (context, state) {
         if (state is ProductsSuccessState) {
           var products = state.products;
-          return Expanded(
-              child: GridView.builder(
-            itemCount: products.length,
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                crossAxisSpacing: 15,
-                maxCrossAxisExtent: 200,
-                childAspectRatio: 1),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () =>
-                      GoRouter.of(context).pushNamed(AppRoute.productDetails),
-                  child: CutomProductsItem(
-                    products: products[index],
-                  ));
-            },
-          ));
+          return ProductGridViewSuccessState(products: products);
         } else if (state is ProductsFailureState) {
           print(state.errMessage);
           return Center(

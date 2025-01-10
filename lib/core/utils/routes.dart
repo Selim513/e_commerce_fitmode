@@ -4,6 +4,7 @@ import 'package:e_commerce_fitmode/features/account/presentation/views/account_v
 import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/password_reset_view.dart';
+import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/product_details_view.dart';
 import 'package:e_commerce_fitmode/features/notification/presentation/views/notification_view.dart';
@@ -71,10 +72,14 @@ abstract class AppRoute {
         builder: (context, state) => const HomeView(),
         routes: <RouteBase>[
           GoRoute(
-            path: productDetails,
-            name: productDetails,
-            builder: (context, state) => const ProductsDetails(),
-          )
+              path: productDetails,
+              name: productDetails,
+              builder: (context, state) {
+                final products = state.extra as ProductsModel;
+                return ProductsDetails(
+                  products: products,
+                );
+              })
         ]),
     GoRoute(
       path: bottomNavBar,
