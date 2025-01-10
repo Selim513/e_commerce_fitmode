@@ -1,3 +1,4 @@
+import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -5,7 +6,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class CustomPositionedSavedHeart extends StatefulWidget {
   const CustomPositionedSavedHeart({
     super.key,
+    required this.product,
   });
+  final ProductsModel? product;
 
   @override
   State<CustomPositionedSavedHeart> createState() =>
@@ -15,8 +18,10 @@ class CustomPositionedSavedHeart extends StatefulWidget {
 class _CustomPositionedSavedHeartState
     extends State<CustomPositionedSavedHeart> {
   bool isSelected = true;
+
   @override
   Widget build(BuildContext context) {
+    var products = widget.product;
     return Positioned(
       right: 15,
       top: 10,
@@ -29,8 +34,16 @@ class _CustomPositionedSavedHeartState
             {
               'user_id': Supabase
                   .instance.client.auth.currentUser?.id, // معرف المستخدم
-              'product_id': 1, // معرف المنتج (يجب تعديله ديناميكيًا)
+              'product_id':
+                  widget.product!.id, // معرف المنتج (يجب تعديله ديناميكيًا)
               'saved_at': DateTime.now().toIso8601String(),
+              'image_url': products?.image ?? '',
+              'product_title': products!.title ?? '',
+              'product_price': products.price,
+              'product_desc': products.description,
+              'product_category': products.category ?? '',
+              'product_review_count': products.rating?.count ?? 0,
+              'product_review_rate': products.rating?.rate ?? 0.0,
             }
           ]).select();
         },

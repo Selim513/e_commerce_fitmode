@@ -17,6 +17,7 @@ class CutomProductsItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomProductItemWithSavedIcon(
+          products: products,
           image: products.image ?? '',
         ),
         Text(

@@ -7,7 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/utils/routes.dart';
-
+//----بص يامعلم اما تيجي تاني هتضيف ال colum  ال انت عملتها
+//--------بتاعت ال info بتاع ال product  في Supabase table editor
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
