@@ -27,14 +27,16 @@ class ProductsDetails extends StatelessWidget {
               children: [
                 Center(
                   child: CustomProductDetailImage(
-                    image: products.image?? '',
+                    image: products.image ?? '',
                   ),
                 ),
                 Text(
                   products.title ?? '',
                   style: AppFontStyle.titleFonts30.copyWith(fontSize: 25),
                 ),
-                 CustomDetailReviewSextion(rate: products.rating,),
+                CustomDetailReviewSection(
+                  rate: products.rating,
+                ),
                 Text(
                   products.description ?? '',
                   style: AppFontStyle.greyFont15.copyWith(fontSize: 17),

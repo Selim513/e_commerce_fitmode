@@ -7,15 +7,18 @@ class CustomStarRate extends StatelessWidget {
     super.key,
     required this.size,
     this.initialRate,
+    this.rate,
   });
   final double size;
   final double? initialRate;
+  final double? rate;
 
   @override
   Widget build(BuildContext context) {
     return RatingBar.builder(
       ignoreGestures: true,
-      initialRating: initialRate ?? 4.0, // Displaying the current rating
+      initialRating: (initialRate?.floorToDouble()) ??
+          4.0, // Displaying the current rating
       minRating: 1,
       itemCount: 5,
       itemSize: size, // Size of each star

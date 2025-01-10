@@ -5,8 +5,10 @@ import 'package:e_commerce_fitmode/features/auth/presentation/views/create_accou
 import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/password_reset_view.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
+import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/rating.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/product_details_view.dart';
+import 'package:e_commerce_fitmode/features/home/presentation/views/product_reviews_view.dart';
 import 'package:e_commerce_fitmode/features/notification/presentation/views/notification_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/splash_view_screen_view.dart';
@@ -79,7 +81,17 @@ abstract class AppRoute {
                 return ProductsDetails(
                   products: products,
                 );
-              })
+              },
+              routes: <RouteBase>[
+                GoRoute(
+                  path: reviews,
+                  name: reviews,
+                  builder: (context, state) {
+                    final reviews = state.extra as Rating;
+                    return  ProductReviewsView(rate: reviews,);
+                  },
+                )
+              ]),
         ]),
     GoRoute(
       path: bottomNavBar,
