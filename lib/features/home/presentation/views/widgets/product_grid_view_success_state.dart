@@ -23,7 +23,7 @@ class ProductGridViewSuccessState extends StatelessWidget {
         return GestureDetector(
             onTap: () => GoRouter.of(context)
                 .pushNamed(AppRoute.productDetails, extra: products[index]),
-            child: CutomProductsItem(
+            child: CustomProductsItem(
               products: products[index],
             ));
       },

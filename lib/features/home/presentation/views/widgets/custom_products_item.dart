@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'cusotm_product_item_with_saved_icon.dart';
 
-class CutomProductsItem extends StatelessWidget {
-  const CutomProductsItem({
+class CustomProductsItem extends StatelessWidget {
+  const CustomProductsItem({
     super.key,
     required this.products,
   });
