@@ -135,7 +135,7 @@ class _AuthFormState extends State<AuthForm> {
                         passwordController.text,
                       )
                     : BlocProvider.of<AuthCubit>(context).sigininAccount(
-                        email: emailController.text,
+                        emailAddress: emailController.text,
                         password: passwordController.text);
               } else {
                 print('Errror not validate');

@@ -1,9 +1,9 @@
 import 'package:e_commerce_fitmode/core/utils/assets_helper.dart';
 import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/widget/custom_progress_indicator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -34,14 +34,17 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _onBoardinnextPage() async {
-    final seesion = Supabase.instance.client.auth.currentSession;
     await Future.delayed(const Duration(seconds: 2)).then(
       (value) {
-        if (seesion != null) {
-          GoRouter.of(context).pushReplacementNamed(AppRoute.bottomNavBar);
-        } else {
-          GoRouter.of(context).replaceNamed(AppRoute.getStarted);
-        }
+        FirebaseAuth.instance.authStateChanges().listen((User? user) {
+          if (user != null) {
+            GoRouter.of(context).pushReplacementNamed(AppRoute.bottomNavBar);
+
+            print(user.uid);
+          } else {
+            GoRouter.of(context).replaceNamed(AppRoute.getStarted);
+          }
+        });
       },
     );
   }

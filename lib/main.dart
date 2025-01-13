@@ -1,23 +1,29 @@
 import 'package:e_commerce_fitmode/bloc_observer.dart';
 import 'package:e_commerce_fitmode/core/utils/services_locator.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:e_commerce_fitmode/firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/utils/routes.dart';
-//----بص يامعلم اما تيجي تاني هتضيف ال colum  ال انت عملتها
-//--------بتاعت ال info بتاع ال product  في Supabase table editor
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Supabase.initialize(
-      url: 'https://dnywzrldbacignhkwnkh.supabase.co',
-      anonKey:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRueXd6cmxkYmFjaWduaGt3bmtoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMxNzM3MDgsImV4cCI6MjA0ODc0OTcwOH0.1Aj5hLyq-kPaAlw8Kyaz9c3HQvOuQgnAgmG6lbNjUU4');
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   Bloc.observer = AppObserver();
   setup();
   runApp(const MainApp());
+  FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+    } else {
+      print('User is signed in!');
+    }
+  });
 }
 
 class MainApp extends StatelessWidget {

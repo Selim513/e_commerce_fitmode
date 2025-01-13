@@ -111,6 +111,8 @@ abstract class AppRoute {
     GoRoute(
       path: savedItem,
       name: savedItem,
+      
+      
       builder: (context, state) => const SavedItemView(),
     ),
     GoRoute(
