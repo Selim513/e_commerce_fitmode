@@ -1,7 +1,7 @@
 import 'rating.dart';
 
 class ProductsModel {
-  int? id;
+  int id;
   String? title;
   double? price;
   String? description;
@@ -10,7 +10,7 @@ class ProductsModel {
   Rating? rating;
 
   ProductsModel({
-    this.id,
+    required this.id,
     this.title,
     this.price,
     this.description,
@@ -20,7 +20,7 @@ class ProductsModel {
   });
 
   factory ProductsModel.fromJson(Map<String, dynamic> json) => ProductsModel(
-        id: json['id'] as int?,
+        id: json['id'] as int,
         title: json['title'] as String?,
         price: (json['price'] as num?)?.toDouble(),
         description: json['description'] as String?,
