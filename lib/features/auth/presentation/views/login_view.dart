@@ -28,7 +28,8 @@ class LoginView extends StatelessWidget {
                 customScaffoldMessenger(context,
                     successMessge: state.successMessage, isSuccess: true);
                 // context.goNamed(AppRoute.home);
-                GoRouter.of(context).pushReplacementNamed(AppRoute.home);
+                GoRouter.of(context)
+                    .pushReplacementNamed(AppRoute.bottomNavBar);
               }
             },
             builder: (context, state) {

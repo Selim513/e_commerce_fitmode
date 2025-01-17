@@ -1,43 +1,71 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_state_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthenticationState> {
   AuthCubit() : super(AuthInitialState());
   //Create Account method
-  createAccount(emailAddress, password) async {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
+
+  createAccount() async {
     emit(CreateAccountLoadingState());
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailAddress,
-        password: password,
+        email: emailController.text,
+        password: passwordController.text,
       );
-      emit(CreateAccountSuccessState(
-          successMessage: 'Account has been created.'));
+
+      final user = credential.user;
+      if (user != null) {
+        await FirebaseFirestore.instance
+            .collection('Client')
+            .doc(user.uid)
+            .set({
+          "name": nameController.text,
+          "email": emailController.text,
+          "created_at": DateTime.now(),
+        });
+
+        emit(CreateAccountSuccessState(
+          successMessage: 'Account has been created.',
+        ));
+      } else {
+        emit(CreateAccountFailureState(
+          errorMessage: 'Failed to retrieve user after account creation.',
+        ));
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(CreateAccountFailureState(
-            errorMessage: 'The Password you enter is too weak'));
+          errorMessage: 'The Password you enter is too weak',
+        ));
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
         emit(CreateAccountFailureState(
-            errorMessage: 'The account already exist.'));
+          errorMessage: 'The account already exists.',
+        ));
         print('The account already exists for that email.');
       }
     } catch (e) {
       emit(CreateAccountFailureState(
-          errorMessage: 'There is an error occured ===>${e.toString()}'));
+        errorMessage: 'An unexpected error occurred. Please try again later.',
+      ));
       print(e);
     }
   }
 
 // Login method
-  sigininAccount({password, emailAddress}) async {
+  sigininAccount() async {
     emit(SigininAccountLoadingState());
     try {
-      final credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: emailAddress, password: password);
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
       emit(SigininAccountSuccessState(successMessage: 'Welcome Back.'));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

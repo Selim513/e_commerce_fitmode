@@ -1,4 +1,7 @@
+import 'package:e_commerce_fitmode/core/widgets/custom_primary_appbar.dart';
 import 'package:flutter/material.dart';
+
+import 'widget/custom_account_body.dart';
 
 class AccountView extends StatelessWidget {
   const AccountView({super.key});
@@ -6,8 +9,9 @@ class AccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('Account'),
+      appBar: CustomPrimariyAppBar(appBarTitle: 'Account'),
+      body: SafeArea(
+        child: CustomAccountBody(),
       ),
     );
   }

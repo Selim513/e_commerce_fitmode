@@ -1,5 +1,6 @@
 import 'package:e_commerce_fitmode/bloc_observer.dart';
 import 'package:e_commerce_fitmode/core/utils/services_locator.dart';
+import 'package:e_commerce_fitmode/features/account/presentation/views/account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_commerce_fitmode/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,8 +8,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'core/utils/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +32,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthCubit(),
-      child: MaterialApp.router(
+      child: MaterialApp(
         theme: ThemeData(
           fontFamily: GoogleFonts.aBeeZee().fontFamily,
           colorScheme: const ColorScheme.light(
@@ -41,8 +40,8 @@ class MainApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        // home: const ProductReviewsView(),
-        routerConfig: AppRoute.router,
+        home: const AccountView(),
+        // routerConfig: AppRoute.router,
       ),
     );
   }

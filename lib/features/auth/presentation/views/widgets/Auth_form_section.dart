@@ -30,19 +30,16 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   bool isPasswordActive = false;
-  var formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   bool check = false;
   @override
   Widget build(BuildContext context) {
+    AuthCubit authCubit = context.read<AuthCubit>();
     double height = MediaQuery.sizeOf(context).height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Form(
-          key: formKey,
+          key: authCubit.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -67,7 +64,7 @@ class _AuthFormState extends State<AuthForm> {
                             }
                             return null;
                           },
-                          controller: nameController,
+                          controller: authCubit.nameController,
                           hinttText: 'Enter your Full name',
                           dynamicSuffixIcon: true,
                         ),
@@ -88,7 +85,7 @@ class _AuthFormState extends State<AuthForm> {
                   return null;
                 },
                 hinttText: 'Enter your email adress',
-                controller: emailController,
+                controller: authCubit.emailController,
               ),
               const Gap(10),
               Text(
@@ -104,7 +101,7 @@ class _AuthFormState extends State<AuthForm> {
                   return null;
                 },
                 hinttText: 'Enter your password',
-                controller: passwordController,
+                controller: authCubit.passwordController,
                 suffixIcon: GestureDetector(
                     onTap: () {
                       isPasswordActive = !isPasswordActive;
@@ -127,16 +124,11 @@ class _AuthFormState extends State<AuthForm> {
         const Gap(30),
         CustomElevatedButton(
             onPress: () {
-              if (formKey.currentState!.validate()) {
+              if (authCubit.formKey.currentState!.validate()) {
                 print('Validaaaatee');
                 widget.authSignUp
-                    ? BlocProvider.of<AuthCubit>(context).createAccount(
-                        emailController.text,
-                        passwordController.text,
-                      )
-                    : BlocProvider.of<AuthCubit>(context).sigininAccount(
-                        emailAddress: emailController.text,
-                        password: passwordController.text);
+                    ? BlocProvider.of<AuthCubit>(context).createAccount()
+                    : BlocProvider.of<AuthCubit>(context).sigininAccount();
               } else {
                 print('Errror not validate');
               }
