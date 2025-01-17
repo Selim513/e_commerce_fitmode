@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CustomAccountDivider extends StatelessWidget {
   const CustomAccountDivider({
@@ -8,9 +7,9 @@ class CustomAccountDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Divider( 
+    return const Divider(
       thickness: 8,
-      color: Colors.grey,
+      color: Color(0xffE6E6E6),
     );
   }
 }

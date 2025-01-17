@@ -10,12 +10,16 @@ class CustomAccountInformationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: ListView.builder(
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: accountDetailsList.length - 1,
       itemBuilder: (context, index) => CustomContainerAccountListItem(
-          title: accountDetailsList[index + 1].title,
-          icon: accountDetailsList[index + 1].icon),
-    ));
+        title: accountDetailsList[index + 1].title,
+        icon: accountDetailsList[index + 1].icon,
+        isFirst: true,
+        isLast: index == accountDetailsList.length - 2,
+      ),
+    );
   }
 }

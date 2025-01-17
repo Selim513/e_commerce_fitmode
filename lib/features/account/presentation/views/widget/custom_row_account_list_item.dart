@@ -1,4 +1,3 @@
-
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/assets_helper.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +17,11 @@ class CustomRowAccountListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        AssetsHelper.icons(name: icon, width: 30),
+        AssetsHelper.icons(name: icon, width: 25),
         const Gap(20),
         Text(
           title,
-          style: AppFontStyle.reqgularFont.copyWith(fontSize: 20),
+          style: AppFontStyle.reqgularFont.copyWith(fontSize: 18),
         ),
         const Spacer(),
         const Icon(Icons.arrow_forward_ios),
