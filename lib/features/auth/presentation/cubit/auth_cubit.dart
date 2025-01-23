@@ -7,10 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AuthCubit extends Cubit<AuthenticationState> {
   AuthCubit() : super(AuthInitialState());
   //Create Account method
-  TextEditingController nameController = TextEditingController();
+  TextEditingController createAccountnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  bool isPasswordActive = false;
+  bool check = false;
+  final GlobalKey<FormState> formKeySignUp = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKeyResetPassword = GlobalKey<FormState>();
 
   createAccount() async {
     emit(CreateAccountLoadingState());
@@ -27,7 +31,7 @@ class AuthCubit extends Cubit<AuthenticationState> {
             .collection('Client')
             .doc(user.uid)
             .set({
-          "name": nameController.text,
+          "name": createAccountnameController.text,
           "email": emailController.text,
           "created_at": DateTime.now(),
         });
@@ -85,15 +89,26 @@ class AuthCubit extends Cubit<AuthenticationState> {
   }
 
   // Reset Password method
-  sendResetPasswordLink({email}) async {
+  sendResetPasswordLink() async {
     try {
-      // await Supabase.instance.client.auth.resetPasswordForEmail(email,
-      //     redirectTo: 'com.example.e_commerce_fitmode://reset-password');
-      emit(ResetPasswordLinkSuccessState(
-          successMessage: 'Password reset link sent to your email'));
-    } catch (e) {
-      print(e);
-      emit(ResetPasswordLinkFailureState(errorMessage: e.toString()));
+      emit(ResetPasswordLoadingState());
+      final credential = await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: emailController.text,
+      );
+      emit(ResetPasswordSuccessState(successMessage: 'Password email sent .'));
+    } on FirebaseAuthException catch (e) {
+      emit(ResetPasswordFailureState(
+          errorMessage: 'There is an error ${e.message}'));
     }
+  }
+
+  signout() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    await auth.signOut().then(
+      (value) {
+        emailController.clear();
+        passwordController.clear();
+      },
+    );
   }
 }

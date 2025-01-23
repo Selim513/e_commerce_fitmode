@@ -14,14 +14,13 @@ class PasswordResetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var formKey = GlobalKey<FormState>();
     TextEditingController emailController = TextEditingController();
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Form(
-          key: formKey,
+          key: context.read<AuthCubit>().formKeyResetPassword,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -34,10 +33,11 @@ class PasswordResetView extends StatelessWidget {
               const Gap(10),
               BlocConsumer<AuthCubit, AuthenticationState>(
                 listener: (context, state) {
-                  if (state is ResetPasswordLinkSuccessState) {
+                  if (state is ResetPasswordSuccessState) {
                     customScaffoldMessenger(context,
                         successMessge: state.successMessage, isSuccess: true);
-                  } else if (state is ResetPasswordLinkFailureState) {
+                    Navigator.pop(context);
+                  } else if (state is ResetPasswordFailureState) {
                     customScaffoldMessenger(context,
                         successMessge: state.errorMessage, isSuccess: false);
                   }
@@ -48,7 +48,7 @@ class PasswordResetView extends StatelessWidget {
                         checkEmailValidator(value);
                         return null;
                       },
-                      controller: emailController,
+                      controller: context.read<AuthCubit>().emailController,
                       hinttText: 'Email',
                       dynamicSuffixIcon: false,
                       fieldType: 'Email');
@@ -61,9 +61,12 @@ class PasswordResetView extends StatelessWidget {
                   style: AppFontStyle.buttonTextStyle,
                 ),
                 onPress: () {
-                  if (formKey.currentState!.validate()) {
-                    BlocProvider.of<AuthCubit>(context)
-                        .sendResetPasswordLink(email: emailController.text);
+                  if (context
+                      .read<AuthCubit>()
+                      .formKeyResetPassword
+                      .currentState!
+                      .validate()) {
+                    BlocProvider.of<AuthCubit>(context).sendResetPasswordLink();
                   }
                 },
               ),

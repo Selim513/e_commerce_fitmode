@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'core/utils/routes.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -32,7 +34,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthCubit(),
-      child: MaterialApp(
+      child: MaterialApp.router(
         theme: ThemeData(
           fontFamily: GoogleFonts.aBeeZee().fontFamily,
           colorScheme: const ColorScheme.light(
@@ -40,8 +42,8 @@ class MainApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: const AccountView(),
-        // routerConfig: AppRoute.router,
+        // home: const AccountView(),
+        routerConfig: AppRoute.router,
       ),
     );
   }

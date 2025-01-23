@@ -33,14 +33,16 @@ class SigininAccountFailureState extends AuthenticationState {
 class SigininAccountLoadingState extends AuthenticationState {}
 //-------------------------ResetPasswordLink----------------
 
-class ResetPasswordLinkSuccessState extends AuthInitialState {
+class ResetPasswordSuccessState extends AuthInitialState {
   final String successMessage;
 
-  ResetPasswordLinkSuccessState({required this.successMessage});
+  ResetPasswordSuccessState({required this.successMessage});
 }
 
-class ResetPasswordLinkFailureState extends AuthInitialState {
+class ResetPasswordFailureState extends AuthInitialState {
   final String errorMessage;
 
-  ResetPasswordLinkFailureState({required this.errorMessage});
+  ResetPasswordFailureState({required this.errorMessage});
 }
+
+class ResetPasswordLoadingState extends AuthInitialState {}

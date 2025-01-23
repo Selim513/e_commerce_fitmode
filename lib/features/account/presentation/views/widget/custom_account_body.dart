@@ -1,5 +1,3 @@
-import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
-import 'package:e_commerce_fitmode/core/utils/assets_helper.dart';
 import 'package:e_commerce_fitmode/features/account/presentation/models/account_model.dart';
 import 'package:e_commerce_fitmode/features/account/presentation/views/widget/custom_account_information_section.dart';
 import 'package:e_commerce_fitmode/features/account/presentation/views/widget/custom_account_list_item.dart';
@@ -7,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'custom_account_divider.dart';
+import 'custom_logou_section.dart';
 
 class CustomAccountBody extends StatelessWidget {
   const CustomAccountBody({
@@ -43,21 +42,7 @@ class CustomAccountBody extends StatelessWidget {
           isLast: true,
         ),
         const CustomAccountDivider(),
-        Container(
-          padding: const EdgeInsets.all(20),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AssetsHelper.icons(name: 'Logout'),
-              const Gap(10),
-              Text(
-                'Logout',
-                style: AppFontStyle.reqgularFont
-                    .copyWith(fontSize: 20, color: Colors.red),
-              )
-            ],
-          ),
-        )
+        const CustomLogoutSection()
       ],
     );
   }

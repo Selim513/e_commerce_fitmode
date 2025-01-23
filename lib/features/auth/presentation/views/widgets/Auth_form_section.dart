@@ -17,7 +17,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-class AuthForm extends StatefulWidget {
+class AuthForm extends StatelessWidget {
   const AuthForm({
     super.key,
     required this.authSignUp,
@@ -25,25 +25,18 @@ class AuthForm extends StatefulWidget {
   final bool authSignUp;
 
   @override
-  State<AuthForm> createState() => _AuthFormState();
-}
-
-class _AuthFormState extends State<AuthForm> {
-  bool isPasswordActive = false;
-  bool check = false;
-  @override
   Widget build(BuildContext context) {
-    AuthCubit authCubit = context.read<AuthCubit>();
+    var authCubit = context.read<AuthCubit>();
     double height = MediaQuery.sizeOf(context).height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Form(
-          key: authCubit.formKey,
+          key: authSignUp ? authCubit.formKeySignUp : authCubit.formKeyLogin,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              widget.authSignUp
+              authSignUp
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -64,7 +57,7 @@ class _AuthFormState extends State<AuthForm> {
                             }
                             return null;
                           },
-                          controller: authCubit.nameController,
+                          controller: authCubit.createAccountnameController,
                           hinttText: 'Enter your Full name',
                           dynamicSuffixIcon: true,
                         ),
@@ -104,29 +97,30 @@ class _AuthFormState extends State<AuthForm> {
                 controller: authCubit.passwordController,
                 suffixIcon: GestureDetector(
                     onTap: () {
-                      isPasswordActive = !isPasswordActive;
-                      setState(() {});
+                      authCubit.isPasswordActive = !authCubit.isPasswordActive;
                     },
                     child: Icon(
-                      isPasswordActive
+                      authCubit.isPasswordActive
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined,
                     )),
-                obsecure: isPasswordActive,
+                obsecure: authCubit.isPasswordActive,
               ),
             ],
           ),
         ),
         const Gap(10),
-        widget.authSignUp
+        authSignUp
             ? const CustomPrivacyAndCookieUseText()
             : const CustomForgetPasswordSection(),
         const Gap(30),
         CustomElevatedButton(
             onPress: () {
-              if (authCubit.formKey.currentState!.validate()) {
+              if (authSignUp
+                  ? authCubit.formKeySignUp.currentState!.validate()
+                  : authCubit.formKeyLogin.currentState!.validate()) {
                 print('Validaaaatee');
-                widget.authSignUp
+                authSignUp
                     ? BlocProvider.of<AuthCubit>(context).createAccount()
                     : BlocProvider.of<AuthCubit>(context).sigininAccount();
               } else {
@@ -134,32 +128,32 @@ class _AuthFormState extends State<AuthForm> {
               }
             },
             widget: Text(
-              widget.authSignUp ? 'Create an account' : 'Login',
+              authSignUp ? 'Create an account' : 'Login',
               style: AppFontStyle.buttonTextStyle,
             )),
         const Gap(10),
         const CustomOrDivider(),
         const Gap(10),
         CustomGoogleRegistrationButton(
-          registrationType: widget.authSignUp ? 'Sign Up' : 'Login',
+          registrationType: authSignUp ? 'Sign Up' : 'Login',
           onPress: () {},
         ),
         const Gap(15),
         CustomFacebookRegistrationButton(
-          registrationType: widget.authSignUp ? 'Sign Up' : 'Login',
+          registrationType: authSignUp ? 'Sign Up' : 'Login',
           onPress: () {},
         ),
         Gap(height * 0.13),
         LoginNavigatorSection(
           onPress: () {
-            if (widget.authSignUp) {
+            if (authSignUp) {
               GoRouter.of(context).goNamed(AppRoute.authLoginView);
             } else {
               GoRouter.of(context).goNamed(AppRoute.authCreateAccount);
             }
           },
-          checkName: widget.authSignUp ? 'Already' : 'do\'nt',
-          registrationType: widget.authSignUp ? 'Login' : 'Join',
+          checkName: authSignUp ? 'Already' : 'do\'nt',
+          registrationType: authSignUp ? 'Login' : 'Join',
         ),
         const Gap(10),
       ],
