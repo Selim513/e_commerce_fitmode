@@ -54,6 +54,7 @@ abstract class AppRoute {
         GoRoute(
           path: authCreateAccount,
           name: authCreateAccount,
+          
           builder: (context, state) => const CreateAccountView(),
         ),
         GoRoute(

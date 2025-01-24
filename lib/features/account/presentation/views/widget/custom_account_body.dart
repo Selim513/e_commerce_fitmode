@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'custom_account_divider.dart';
-import 'custom_logou_section.dart';
+import 'custom_logout_section.dart';
 
 class CustomAccountBody extends StatelessWidget {
   const CustomAccountBody({

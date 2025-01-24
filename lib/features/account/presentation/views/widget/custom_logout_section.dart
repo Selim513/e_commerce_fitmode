@@ -19,7 +19,7 @@ class CustomLogoutSection extends StatelessWidget {
       onTap: () async {
         final auth = FirebaseAuth.instance;
         await context.read<AuthCubit>().signout();
-        GoRouter.of(context).pushReplacement(AppRoute.authLoginView);
+        GoRouter.of(context).pushReplacement(AppRoute.getStarted);
       },
       child: Container(
         padding: const EdgeInsets.all(20),

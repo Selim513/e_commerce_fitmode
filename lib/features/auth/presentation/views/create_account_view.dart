@@ -2,7 +2,7 @@ import 'package:e_commerce_fitmode/core/utils/helper.dart';
 import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_state_cubit.dart';
-import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/create_account_body.dart';
+import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/auth_form_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -12,13 +12,13 @@ class CreateAccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+            var createAccountGlobalKey = GlobalKey<FormState>();
+
     return Scaffold(
         body: BlocConsumer<AuthCubit, AuthenticationState>(
       listener: (context, state) {
         if (state is CreateAccountSuccessState) {
-          print('Success===========${state.successMessage}');
-          debugPrint(
-              'Account has been created =========${state.successMessage}');
+          
           customScaffoldMessenger(context,
               successMessge: state.successMessage, isSuccess: true);
 
@@ -30,7 +30,12 @@ class CreateAccountView extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return const CreateAccountBody();
+        return AuthForm(
+          globlaKey: createAccountGlobalKey,
+          authSignUp: true,
+          title: 'Create an account',
+          subtitle: ' Let\'s create your account',
+        );
       },
     ));
   }

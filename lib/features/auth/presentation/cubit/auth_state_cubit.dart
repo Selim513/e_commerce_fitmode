@@ -1,6 +1,8 @@
 abstract class AuthenticationState {}
 
 class AuthInitialState extends AuthenticationState {}
+class LoadingState extends AuthenticationState {}
+
 
 class CreateAccountSuccessState extends AuthenticationState {
   final String successMessage;
@@ -14,7 +16,6 @@ class CreateAccountFailureState extends AuthenticationState {
   CreateAccountFailureState({required this.errorMessage});
 }
 
-class CreateAccountLoadingState extends AuthenticationState {}
 
 //-----------------------Signin State------------------------------
 
@@ -30,7 +31,7 @@ class SigininAccountFailureState extends AuthenticationState {
   SigininAccountFailureState({required this.errorMessage});
 }
 
-class SigininAccountLoadingState extends AuthenticationState {}
+
 //-------------------------ResetPasswordLink----------------
 
 class ResetPasswordSuccessState extends AuthInitialState {
@@ -45,4 +46,4 @@ class ResetPasswordFailureState extends AuthInitialState {
   ResetPasswordFailureState({required this.errorMessage});
 }
 
-class ResetPasswordLoadingState extends AuthInitialState {}
+

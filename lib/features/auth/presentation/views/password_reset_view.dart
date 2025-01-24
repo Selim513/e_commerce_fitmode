@@ -15,12 +15,13 @@ class PasswordResetView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
+    var globalKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Form(
-          key: context.read<AuthCubit>().formKeyResetPassword,
+          key: globalKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -48,7 +49,8 @@ class PasswordResetView extends StatelessWidget {
                         checkEmailValidator(value);
                         return null;
                       },
-                      controller: context.read<AuthCubit>().emailController,
+                      controller:
+                          context.read<AuthCubit>().loginEmailController,
                       hinttText: 'Email',
                       dynamicSuffixIcon: false,
                       fieldType: 'Email');
@@ -61,11 +63,7 @@ class PasswordResetView extends StatelessWidget {
                   style: AppFontStyle.buttonTextStyle,
                 ),
                 onPress: () {
-                  if (context
-                      .read<AuthCubit>()
-                      .formKeyResetPassword
-                      .currentState!
-                      .validate()) {
+                  if (globalKey.currentState!.validate()) {
                     BlocProvider.of<AuthCubit>(context).sendResetPasswordLink();
                   }
                 },

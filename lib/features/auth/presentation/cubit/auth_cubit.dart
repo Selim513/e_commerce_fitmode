@@ -8,21 +8,22 @@ class AuthCubit extends Cubit<AuthenticationState> {
   AuthCubit() : super(AuthInitialState());
   //Create Account method
   TextEditingController createAccountnameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController loginEmailController = TextEditingController();
+  TextEditingController loginPasswordController = TextEditingController();
+  TextEditingController createAccountEmailController = TextEditingController();
+  TextEditingController createAccountPasswordController =
+      TextEditingController();
   bool isPasswordActive = false;
   bool check = false;
-  final GlobalKey<FormState> formKeySignUp = GlobalKey<FormState>();
-  final GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();
-  final GlobalKey<FormState> formKeyResetPassword = GlobalKey<FormState>();
 
   createAccount() async {
-    emit(CreateAccountLoadingState());
+    emit(LoadingState());
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+        email: createAccountEmailController.text,
+        password: createAccountPasswordController.text,
+
       );
 
       final user = credential.user;
@@ -32,7 +33,7 @@ class AuthCubit extends Cubit<AuthenticationState> {
             .doc(user.uid)
             .set({
           "name": createAccountnameController.text,
-          "email": emailController.text,
+          "email": createAccountEmailController.text,
           "created_at": DateTime.now(),
         });
 
@@ -66,10 +67,12 @@ class AuthCubit extends Cubit<AuthenticationState> {
 
 // Login method
   sigininAccount() async {
-    emit(SigininAccountLoadingState());
+    emit(LoadingState());
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+          email: loginEmailController.text,
+          password: loginPasswordController.text);
+
       emit(SigininAccountSuccessState(successMessage: 'Welcome Back.'));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -91,9 +94,9 @@ class AuthCubit extends Cubit<AuthenticationState> {
   // Reset Password method
   sendResetPasswordLink() async {
     try {
-      emit(ResetPasswordLoadingState());
+      emit(LoadingState());
       final credential = await FirebaseAuth.instance.sendPasswordResetEmail(
-        email: emailController.text,
+        email: loginEmailController.text,
       );
       emit(ResetPasswordSuccessState(successMessage: 'Password email sent .'));
     } on FirebaseAuthException catch (e) {
@@ -106,8 +109,8 @@ class AuthCubit extends Cubit<AuthenticationState> {
     final FirebaseAuth auth = FirebaseAuth.instance;
     await auth.signOut().then(
       (value) {
-        emailController.clear();
-        passwordController.clear();
+        loginEmailController.clear();
+        loginPasswordController.clear();
       },
     );
   }
