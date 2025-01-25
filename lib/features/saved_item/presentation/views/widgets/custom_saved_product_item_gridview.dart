@@ -1,4 +1,3 @@
-
 import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_products_item.dart';
 import 'package:flutter/material.dart';
 
@@ -10,18 +9,16 @@ class CustomSavedProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: GridView.builder(
-          itemCount: product.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisSpacing: 15,
-            crossAxisCount: 2,
-          ),
-          itemBuilder: (context, index) => CustomProductsItem(
-            products: product[index],
-          ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: GridView.builder(
+        itemCount: product.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 15,
+          crossAxisCount: 2,
+        ),
+        itemBuilder: (context, index) => CustomProductsItem(
+          products: product[index],
         ),
       ),
     );

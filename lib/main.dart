@@ -1,6 +1,5 @@
 import 'package:e_commerce_fitmode/bloc_observer.dart';
 import 'package:e_commerce_fitmode/core/utils/services_locator.dart';
-import 'package:e_commerce_fitmode/features/account/presentation/views/account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_commerce_fitmode/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,7 +41,7 @@ class MainApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        // home: const AccountView(),
+        // home: const MyCartView(),
         routerConfig: AppRoute.router,
       ),
     );
