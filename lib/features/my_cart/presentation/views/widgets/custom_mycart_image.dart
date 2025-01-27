@@ -1,15 +1,16 @@
-import 'package:e_commerce_fitmode/core/utils/assets_helper.dart';
 import 'package:flutter/material.dart';
 
 class CustomMyCartProductImage extends StatelessWidget {
   const CustomMyCartProductImage({
     super.key,
+    required this.image,
   });
-
+  final String image;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: MediaQuery.sizeOf(context).height * 0.12,
-        child: AssetsHelper.image('product'));
+      height: MediaQuery.sizeOf(context).height * 0.12,
+      child: Image.network(image ?? ""),
+    );
   }
 }

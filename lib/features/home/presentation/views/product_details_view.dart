@@ -48,7 +48,7 @@ class ProductsDetails extends StatelessWidget {
                 const CustomSizeButton(),
                 const CustomDivider(),
                 CustomAddToCartSection(
-                  price: products.price ?? 0,
+                 product: products,
                 ),
               ],
             ),

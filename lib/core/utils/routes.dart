@@ -9,6 +9,7 @@ import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/
 import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/product_details_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/product_reviews_view.dart';
+import 'package:e_commerce_fitmode/features/my_cart/presentation/views/my_cart_view.dart';
 import 'package:e_commerce_fitmode/features/notification/presentation/views/notification_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/splash_view_screen_view.dart';
@@ -31,6 +32,7 @@ abstract class AppRoute {
   static const String savedItem = '/savedItem';
   static const String account = '/account';
   static const String reviews = '/reviews';
+  static const String cart = '/cart';
 
   static GoRouter router =
       GoRouter(initialLocation: splashScreen, routes: <RouteBase>[
@@ -54,7 +56,6 @@ abstract class AppRoute {
         GoRoute(
           path: authCreateAccount,
           name: authCreateAccount,
-          
           builder: (context, state) => const CreateAccountView(),
         ),
         GoRoute(
@@ -89,7 +90,9 @@ abstract class AppRoute {
                   name: reviews,
                   builder: (context, state) {
                     final reviews = state.extra as Rating;
-                    return  ProductReviewsView(rate: reviews,);
+                    return ProductReviewsView(
+                      rate: reviews,
+                    );
                   },
                 )
               ]),
@@ -112,14 +115,17 @@ abstract class AppRoute {
     GoRoute(
       path: savedItem,
       name: savedItem,
-      
-      
       builder: (context, state) => const SavedItemView(),
     ),
     GoRoute(
       path: account,
       name: account,
       builder: (context, state) => const AccountView(),
+    ),
+    GoRoute(
+      path: cart,
+      name: cart,
+      builder: (context, state) => const MyCartView(),
     )
   ]);
 }

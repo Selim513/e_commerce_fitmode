@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 void customScaffoldMessenger(BuildContext context,
     {required String successMessge, required bool isSuccess}) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    duration: const Duration(milliseconds: 500),
+    duration: const Duration(seconds: 2),
     content: Center(
         child: Text(
       successMessge,

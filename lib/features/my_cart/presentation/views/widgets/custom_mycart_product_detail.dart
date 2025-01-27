@@ -6,7 +6,9 @@ import '../../../../../core/utils/assets_helper.dart';
 class CustomMyCartProductDetails extends StatelessWidget {
   const CustomMyCartProductDetails({
     super.key,
+    required this.product,
   });
+  final Map<String, dynamic> product;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,9 @@ class CustomMyCartProductDetails extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Product Title ',
+                  product['Title'].split(' ').first,
                   style: AppFontStyle.reqgularFont,
+                  maxLines: 1,
                 ),
                 const Spacer(),
                 AssetsHelper.icons(name: 'Trash'),
@@ -33,7 +36,7 @@ class CustomMyCartProductDetails extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '\$ 1,190',
+                  '\$ ${product['Price']}',
                   style: AppFontStyle.reqgularFont,
                 ),
                 const Spacer(),

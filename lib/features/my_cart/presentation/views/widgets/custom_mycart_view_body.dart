@@ -5,8 +5,8 @@ import 'package:gap/gap.dart';
 import 'custom_checkout_section.dart';
 
 class CustomMyCartViewBody extends StatelessWidget {
-  const CustomMyCartViewBody({super.key});
-
+  const CustomMyCartViewBody({super.key, required this.product});
+  final List<Map<String, dynamic>> product;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,9 +16,11 @@ class CustomMyCartViewBody extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: product.length,
               itemBuilder: (context, index) =>
-                  const CustomMyCartProductContainer(),
+                   CustomMyCartProductContainer(
+                    product: product[index],
+                   ),
             ),
           ),
           const CustomCheckOutSection(),

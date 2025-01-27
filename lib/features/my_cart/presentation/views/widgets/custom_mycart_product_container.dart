@@ -7,7 +7,9 @@ import 'custom_mycart_product_detail.dart';
 class CustomMyCartProductContainer extends StatelessWidget {
   const CustomMyCartProductContainer({
     super.key,
+    required this.product,
   });
+  final Map<String, dynamic> product;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +24,14 @@ class CustomMyCartProductContainer extends StatelessWidget {
                 color: AppColors.greycolor,
                 width: 1,
               )),
-          child: const Row(
+          child: Row(
             children: [
-              CustomMyCartProductImage(),
-              CustomMyCartProductDetails()
+              CustomMyCartProductImage(
+                image: product['Image'],
+              ),
+               CustomMyCartProductDetails(
+                product: product,
+              )
             ],
           )),
     );
