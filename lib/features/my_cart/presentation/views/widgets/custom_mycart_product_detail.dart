@@ -15,6 +15,8 @@ class CustomMyCartProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<CartCubit>();
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -32,7 +34,11 @@ class CustomMyCartProductDetails extends StatelessWidget {
                 GestureDetector(
                     onTap: () async {
                       try {
-                        context.read<CartCubit>().deleteCartItem(product.id);
+                        cubit.deleteCartItem(product.id).then(
+                          (value) {
+                            cubit.fetchCartItems();
+                          },
+                        );
                         print('Deleteeeeeeeeed');
                       } catch (e) {
                         print('========${e.toString()}');
@@ -59,7 +65,6 @@ class CustomMyCartProductDetails extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.add),
                       onPressed: () {
-                        final cubit = context.read<CartCubit>();
                         product.quantity++;
                         cubit
                             .updateProductQuantity(product.id, product.quantity)
@@ -75,7 +80,6 @@ class CustomMyCartProductDetails extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.remove),
                       onPressed: () {
-                        final cubit = context.read<CartCubit>();
                         if (product.quantity > 1) {
                           product.quantity--;
                           cubit
