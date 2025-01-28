@@ -3,8 +3,8 @@ import 'package:e_commerce_fitmode/core/utils/helper.dart';
 import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_elevated_button.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
-import 'package:e_commerce_fitmode/features/home/presentation/views/manger/cart/cart_cubit.dart';
-import 'package:e_commerce_fitmode/features/home/presentation/views/manger/cart/cart_state.dart';
+import 'package:e_commerce_fitmode/features/my_cart/presentation/views/cubit/cart_cubit.dart';
+import 'package:e_commerce_fitmode/features/my_cart/presentation/views/cubit/cart_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,14 +53,8 @@ class CustomAddToCartSection extends StatelessWidget {
               builder: (context, state) => Expanded(
                 child: CustomElevatedButton(
                     onPress: () async {
-                      context.read<CartCubit>().addToCart({
-                        "Id": product.id.toString(),
-                        "Title": product.title,
-                        "Desc": product.description,
-                        "Image": product.image,
-                        "Category": product.category,
-                        "Price": product.price,
-                      });
+                      context.read<CartCubit>().addToCart(product);
+                    
                     },
                     widget: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

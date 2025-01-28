@@ -1,3 +1,4 @@
+import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
@@ -9,7 +10,7 @@ class CustomMyCartProductContainer extends StatelessWidget {
     super.key,
     required this.product,
   });
-  final Map<String, dynamic> product;
+  final ProductsModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +28,9 @@ class CustomMyCartProductContainer extends StatelessWidget {
           child: Row(
             children: [
               CustomMyCartProductImage(
-                image: product['Image'],
+                image: product.image,
               ),
-               CustomMyCartProductDetails(
+              CustomMyCartProductDetails(
                 product: product,
               )
             ],
