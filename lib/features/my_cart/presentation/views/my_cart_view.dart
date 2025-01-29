@@ -14,33 +14,32 @@ class MyCartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CartCubit()..fetchCartItems(),
-      child: BlocConsumer<CartCubit, CartState>(
-        listener: (context, state) {
-          if (state is CartFechItemSuccess) {
-            print('Items fetched successfully.');
-          } else if (state is CartFechItemFailure) {
-            print('Error: ${state.errMessage}');
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            appBar: const CustomPrimariyAppBar(appBarTitle: 'My Cart'),
-            body: SafeArea(
-                child: state is CartFechItemFailure
-                    ? const CustomNoDatataWidget(
-                        iconName: 'Cart-duotone',
-                        subTitle:
-                            'When you add products,\n they’ll appear here.',
-                        title: 'Your Cart Is Empty!',
-                      )
-                    : state is CartFechItemSuccess &&
-                            state.productItem.isNotEmpty
-                        ? CustomMyCartViewBody(
-                            product: state.productItem,
-                          )
-                        : const Center(child: CircularProgressIndicator())),
-          );
-        },
+      child: Scaffold(
+        appBar: const CustomPrimariyAppBar(appBarTitle: 'My Cart'),
+        body: SafeArea(
+          child: BlocBuilder<CartCubit, CartState>(
+            builder: (context, state) {
+              if (state is CartFechItemLoading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is CartFechItemSuccess &&
+                  state.productItem.isNotEmpty) {
+                return CustomMyCartViewBody(
+                  product: state.productItem,
+                );
+              } else if (state is CartFechItemFailure) {
+                return Center(
+                  child: Text(state.errMessage),
+                );
+              } else {
+                return const CustomNoDatataWidget(
+                  iconName: 'Cart-duotone',
+                  subTitle: 'When you add products,\n they’ll appear here.',
+                  title: 'Your Cart Is Empty!',
+                );
+              }
+            },
+          ),
+        ),
       ),
     );
   }

@@ -55,7 +55,7 @@ class CustomMyCartProductDetails extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '\$  ${product.price}',
+                  '\$ ${product.price}',
                   style: AppFontStyle.reqgularFont,
                 ),
                 const Spacer(),

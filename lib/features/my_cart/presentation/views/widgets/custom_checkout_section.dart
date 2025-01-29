@@ -8,20 +8,28 @@ import 'custom_checkout_detail_row.dart';
 class CustomCheckOutSection extends StatelessWidget {
   const CustomCheckOutSection({
     super.key,
+    required this.subtotal,
+    required this.vat,
+    required this.shipping,
+    required this.total,
   });
+  final String subtotal;
+  final String vat;
+  final String shipping;
+  final String total;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       spacing: 5,
       children: [
-        const CheckOutDetailRow(title: 'Sup-total', price: '5,870'),
-        const CheckOutDetailRow(title: 'Vat (%)', price: '0.00'),
-        const CheckOutDetailRow(title: 'Shipping fee', price: '80'),
+        CheckOutDetailRow(title: 'Sup-total', price: subtotal),
+        CheckOutDetailRow(title: 'Vat (%)', price: vat),
+        CheckOutDetailRow(title: 'Shipping fee', price: shipping),
         const CustomDivider(),
-        const CheckOutDetailRow(
+        CheckOutDetailRow(
           title: 'Total',
-          price: '5,950',
+          price: total,
           fontColor: Colors.black,
         ),
         CustomElevatedButton(
