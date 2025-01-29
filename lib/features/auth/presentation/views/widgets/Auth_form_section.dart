@@ -35,7 +35,6 @@ class AuthForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var authCubit = context.read<AuthCubit>();
-    double height = MediaQuery.sizeOf(context).height;
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(

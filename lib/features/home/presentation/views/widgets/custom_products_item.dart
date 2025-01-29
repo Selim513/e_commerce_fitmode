@@ -21,7 +21,7 @@ class CustomProductsItem extends StatelessWidget {
           image: products.image ?? '',
         ),
         Text(
-          products.title ?? '',
+          products.title,
           maxLines: 1,
           style:
               AppFontStyle.reqgularFont.copyWith(fontWeight: FontWeight.w500),

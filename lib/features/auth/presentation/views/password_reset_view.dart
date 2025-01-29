@@ -14,7 +14,6 @@ class PasswordResetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
     var globalKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(),

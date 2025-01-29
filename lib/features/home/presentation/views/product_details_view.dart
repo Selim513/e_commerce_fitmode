@@ -31,7 +31,7 @@ class ProductsDetails extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  products.title ?? '',
+                  products.title,
                   style: AppFontStyle.titleFonts30.copyWith(fontSize: 25),
                 ),
                 CustomDetailReviewSection(
@@ -48,7 +48,7 @@ class ProductsDetails extends StatelessWidget {
                 const CustomSizeButton(),
                 const CustomDivider(),
                 CustomAddToCartSection(
-                 product: products,
+                  product: products,
                 ),
               ],
             ),
