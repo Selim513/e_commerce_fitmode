@@ -1,8 +1,6 @@
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/widgets/custom_positioned_saved_heart.dart';
-import 'package:e_commerce_fitmode/features/saved_item/presentation/cubit/saved_item_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'custom_product_image.dart';
 
@@ -27,11 +25,8 @@ class CustomProductItemWithSavedIcon extends StatelessWidget {
             ),
           ],
         ),
-        BlocProvider(
-          create: (context) => SavedItemCubit(),
-          child: CustomPositionedSavedHeart(
-            product: products,
-          ),
+        CustomPositionedSavedHeart(
+          product: products,
         ),
       ],
     );

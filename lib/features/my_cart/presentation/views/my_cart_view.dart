@@ -12,33 +12,30 @@ class MyCartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CartCubit()..fetchCartItems(),
-      child: Scaffold(
-        appBar: const CustomPrimariyAppBar(appBarTitle: 'My Cart'),
-        body: SafeArea(
-          child: BlocBuilder<CartCubit, CartState>(
-            builder: (context, state) {
-              if (state is CartFechItemLoading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is CartFechItemSuccess &&
-                  state.productItem.isNotEmpty) {
-                return CustomMyCartViewBody(
-                  product: state.productItem,
-                );
-              } else if (state is CartFechItemFailure) {
-                return Center(
-                  child: Text(state.errMessage),
-                );
-              } else {
-                return const CustomNoDatataWidget(
-                  iconName: 'Cart-duotone',
-                  subTitle: 'When you add products,\n they’ll appear here.',
-                  title: 'Your Cart Is Empty!',
-                );
-              }
-            },
-          ),
+    return Scaffold(
+      appBar: const CustomPrimariyAppBar(appBarTitle: 'My Cart'),
+      body: SafeArea(
+        child: BlocBuilder<CartCubit, CartState>(
+          builder: (context, state) {
+            if (state is CartFechItemLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is CartFechItemSuccess &&
+                state.productItem.isNotEmpty) {
+              return CustomMyCartViewBody(
+                product: state.productItem,
+              );
+            } else if (state is CartFechItemFailure) {
+              return Center(
+                child: Text(state.errMessage),
+              );
+            } else {
+              return const CustomNoDatataWidget(
+                iconName: 'Cart-duotone',
+                subTitle: 'When you add products,\n they’ll appear here.',
+                title: 'Your Cart Is Empty!',
+              );
+            }
+          },
         ),
       ),
     );

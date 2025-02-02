@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
-import 'package:e_commerce_fitmode/features/saved_item/presentation/cubit/saved_item_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'saved_item_state.dart';
 
 class SavedItemCubit extends Cubit<SavedItemState> {
   SavedItemCubit() : super(SavedItemInitial());
 
   bool isSelected = false;
-  //------------chekIfSaved----------
   Future<void> checkIfSaved(ProductsModel? product) async {
     emit(SavedItemLoading());
     var userId = FirebaseAuth.instance.currentUser?.uid;
@@ -25,15 +25,13 @@ class SavedItemCubit extends Cubit<SavedItemState> {
         }
         emit(SavedItemSuccess());
       } catch (e) {
-        emit(SavedItemFailure(
-            errMessage: 'Error checking if product is saved: $e'));
+        SavedItemFailure(errMessage: 'There is an error ${e.toString()}');
         print('Error checking if product is saved: $e');
       }
     }
   }
 
-  //-------Save item-----------------
-  Future<void> saveItem(ProductsModel? product) async {
+  Future<void> toggleSavedState(ProductsModel? product) async {
     emit(SavedItemLoading());
     var userId = FirebaseAuth.instance.currentUser?.uid;
     if (userId == null || product == null) return;
@@ -52,21 +50,46 @@ class SavedItemCubit extends Cubit<SavedItemState> {
         // إضافة المنتج إذا لم يكن محفوظًا
         await productDoc.set({
           'created_at': DateTime.now(),
-          'product_id': product.id,
-          'product_image': product.image,
-          'product_name': product.title,
-          'product_rate': product.rating?.rate ?? 0.0,
-          'product_reviews_count': product.rating?.count ?? 0,
-          'product_desc': product.description,
+          // استخدام أسماء الحقول التي يتوقعها الـ Model
+          'id': product.id,
+          'title': product.title,
+          'image': product.image,
+          'description': product.description,
+          'rating': {
+            'rate': product.rating?.rate ?? 0.0,
+            'count': product.rating?.count ?? 0,
+          },
+          'price': product.price,
+          'category': product.category,
         });
       }
 
       isSelected = !isSelected;
+      await fetchSavedProduct(); // إعادة جلب البيانات المحدثة
+
       emit(SavedItemSuccess());
     } catch (e) {
-      emit(SavedItemFailure(errMessage: 'Failed to update saved state: $e'));
+      emit(SavedItemFailure(errMessage: 'There is an error ${e.toString()}'));
       print('Failed to update saved state: $e');
     }
   }
-  //--------------------
+
+  fetchSavedProduct() async {
+    var userId = FirebaseAuth.instance.currentUser?.uid;
+    emit(SavedItemLoading());
+    try {
+      var querySnapShot = await FirebaseFirestore.instance
+          .collection('saved_products')
+          .doc(userId)
+          .collection('products')
+          .get();
+      List<ProductsModel> savedProducts = querySnapShot.docs
+          .map((doc) => ProductsModel.fromJson(doc.data()))
+          .toList();
+      emit(FetchSavedItem(product: savedProducts));
+    } catch (e) {
+      print('============ ${e.toString()}');
+      emit(SavedItemFailure(errMessage: 'Errooor ${e.toString()}'));
+    }
+  }
 }

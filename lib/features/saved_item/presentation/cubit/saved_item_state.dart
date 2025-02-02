@@ -1,3 +1,5 @@
+import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
+
 class SavedItemState {}
 
 class SavedItemInitial extends SavedItemState {}
@@ -11,3 +13,15 @@ class SavedItemFailure extends SavedItemState {
 }
 
 class SavedItemLoading extends SavedItemState {}
+
+class FetchSavedItem extends SavedItemState {
+  final List<ProductsModel> product;
+
+  FetchSavedItem({required this.product});
+}
+
+class DeletSavedItem extends SavedItemState {
+  final String message;
+
+  DeletSavedItem({required this.message});
+}

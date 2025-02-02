@@ -12,24 +12,7 @@ class CartCubit extends Cubit<CartState> {
   int count = 0;
 
 //------------Add product-----------------
-  // Future<void> addToCart(ProductsModel product) async {
-  //   try {
-  //     // تحويل الـ Product إلى JSON
-  //     final productData = product.toJson();
-
-  //     // تخزين البيانات في الـ Firestore
-  //     await fireStore
-  //         .collection('cart')
-  //         .doc(product.id.toString())
-  //         .set(productData);
-
-  //     emit(CartSuccessState(
-  //         succMessage: 'The product successfully added to cart'));
-  //   } catch (e) {
-  //     print('Error: ${e.toString()}');
-  //     emit(CartFailureState(errMessage: e.toString()));
-  //   }
-  // }
+ 
   Future<void> addToCart(ProductsModel product) async {
     try {
       final productData = product.toJson();
