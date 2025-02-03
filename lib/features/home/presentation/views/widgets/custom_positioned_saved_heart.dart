@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,6 +26,14 @@ class _CustomPositionedSavedHeartState
     _checkIfSaved();
   }
 
+  @override
+  void didUpdateWidget(CustomPositionedSavedHeart oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.product != widget.product) {
+      _checkIfSaved();
+    }
+  }
+
   Future<void> _checkIfSaved() async {
     var userId = FirebaseAuth.instance.currentUser?.uid;
     if (userId != null && widget.product != null) {
@@ -38,11 +44,10 @@ class _CustomPositionedSavedHeartState
             .collection('products')
             .doc(widget.product!.id.toString())
             .get();
-        if (doc.exists) {
-          setState(() {
-            isSelected = true;
-          });
-        }
+
+        setState(() {
+          isSelected = doc.exists;
+        });
       } catch (e) {
         print('Error checking if product is saved: $e');
       }

@@ -54,7 +54,6 @@ class CustomAddToCartSection extends StatelessWidget {
                 child: CustomElevatedButton(
                     onPress: () async {
                       context.read<CartCubit>().addToCart(product);
-                    
                     },
                     widget: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -59,26 +59,15 @@ class CustomMyCartViewBody extends StatelessWidget {
   const CustomMyCartViewBody({super.key, required this.product});
   final List<ProductsModel> product;
 
-  // Helper functions for calculations
-  double calculateSubtotal(List<ProductsModel> products) {
-    return products.fold(0.0, (sum, item) => sum + (item.price! * item.quantity));
-  }
-
-  double calculateVat(double subtotal) {
-    return subtotal * 0.15; // 15% VAT
-  }
-
-  double calculateTotal(double subtotal, double vat, double shippingFee) {
-    return subtotal + vat + shippingFee;
-  }
 
   @override
   Widget build(BuildContext context) {
     const double shippingFee = 25.0;
 
-    final double subtotal = calculateSubtotal(product);
-    final double vat = calculateVat(subtotal);
-    final double total = calculateTotal(subtotal, vat, shippingFee);
+    final double subtotal = AppFormatters.calculateSubtotal(product);
+    final double vat = AppFormatters.calculateVat(subtotal);
+    final double total =
+        AppFormatters.calculateTotal(subtotal, vat, shippingFee);
 
     final String formattedSubtotal = AppFormatters.formatPrice(subtotal);
     final String formattedVat = AppFormatters.formatPrice(vat);

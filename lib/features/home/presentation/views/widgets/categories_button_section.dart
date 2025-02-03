@@ -23,7 +23,6 @@ class CategoriesButtonSection extends StatelessWidget {
           labelStyle: AppFontStyle.reqgularFont.copyWith(color: Colors.white),
           unselectedLabelStyle: AppFontStyle.reqgularFont,
           onTap: (p0) {
-            print(p0);
             if (p0 == 0) {
               context.read<ProductsCubit>().getAllProduct();
               // context

@@ -12,7 +12,7 @@ class CartCubit extends Cubit<CartState> {
   int count = 0;
 
 //------------Add product-----------------
- 
+
   Future<void> addToCart(ProductsModel product) async {
     try {
       final productData = product.toJson();
