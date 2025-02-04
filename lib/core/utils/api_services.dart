@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 
 class ApiServices {
-  final String baseUrl = 'https://fakestoreapi.com/';
-  final String baseUrlCategory = 'https://fakestoreapi.com/products/category/';
+  static String baseUrl = 'https://fakestoreapi.com/';
+  static String baseUrlCategory = '${baseUrl}products/category/';
   final Dio dio;
 
   ApiServices(this.dio);

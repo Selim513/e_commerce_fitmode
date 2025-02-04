@@ -20,4 +20,12 @@ class ProductsCubit extends Cubit<ProductState> {
       (data) => emit(ProductsSuccessState(products: data)),
     );
   }
+
+  Future<void> getBySearch(String search) async {
+    var data = await homeRepo.fetchBySearch(search: search);
+  data.fold(
+      (failure) => emit(ProductsFailureState(errMessage: failure.errMessage)),
+      (data) => emit(GetBySearch(products: data)),
+    );
+  }
 }

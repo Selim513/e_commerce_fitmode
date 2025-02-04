@@ -45,4 +45,24 @@ class HomeRepoImpl implements HomeRepo {
       return Left(ServerError(e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failure, List<ProductsModel>>> fetchBySearch({required String search}) async {
+    try {
+      var data = await apiServices.get(endPoint: apiProducts);
+      
+      List<ProductsModel> filteredList = data
+          .where((item) =>
+              item['title'].toString().toLowerCase().contains(search.toLowerCase()))
+          .map((item) => ProductsModel.fromJson(item))
+          .toList();
+
+      return Right(filteredList);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerError.fromDioException(e));
+      }
+      return Left(ServerError(e.toString()));
+    }
+  }
 }

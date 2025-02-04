@@ -17,3 +17,9 @@ class ProductsFailureState extends ProductState {
 }
 
 class ProductLoadingState extends ProductState {}
+
+class GetBySearch extends ProductState {
+  final List<ProductsModel> products;
+
+  GetBySearch({required this.products});
+}

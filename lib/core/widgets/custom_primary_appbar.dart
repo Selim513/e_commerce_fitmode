@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class CustomPrimariyAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  const CustomPrimariyAppBar({super.key, required this.appBarTitle});
+  const CustomPrimariyAppBar(
+      {super.key, required this.appBarTitle, this.leading});
   final String appBarTitle;
+  final void Function()? leading;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -13,11 +15,8 @@ class CustomPrimariyAppBar extends StatelessWidget
       titleTextStyle: const TextStyle(
           color: Colors.black, fontSize: 25, fontWeight: FontWeight.w500),
       centerTitle: true,
-      // leading: IconButton(
-      //     onPressed: () {
-      //       GoRouter.of(context).pop();
-      //     },
-      //     icon: const Icon(Icons.arrow_back)),
+      leading:
+          IconButton(onPressed: leading, icon: const Icon(Icons.arrow_back)),
       actions: [
         IconButton(
             onPressed: () {},

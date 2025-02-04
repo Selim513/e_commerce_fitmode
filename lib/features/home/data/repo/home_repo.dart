@@ -5,4 +5,5 @@ import 'package:either_dart/either.dart';
 abstract class HomeRepo {
   Future<Either<Failure, List<ProductsModel>>> fetchAllProducts();
   Future<Either<Failure, List<ProductsModel>>> fetchByCategories({required String category});
+  Future<Either<Failure, List<ProductsModel>>> fetchBySearch({required String search});
 }
