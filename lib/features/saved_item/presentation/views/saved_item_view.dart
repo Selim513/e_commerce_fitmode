@@ -14,7 +14,9 @@ class SavedItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomPrimariyAppBar(appBarTitle: 'Saved Item'),
+      appBar: const CustomPrimariyAppBar(
+        appBarTitle: 'Saved Item',
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: getSavedProducts(), // استخدام Stream للحصول على التحديثات الحية
         builder: (context, snapshot) {

@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_fitmode/core/utils/assets_helper.dart';
 import 'package:e_commerce_fitmode/core/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +17,12 @@ class CustomProductImage extends StatelessWidget {
       child: Center(
         child: SizedBox(
           height: SizeConfig.screenHeight * 0.11,
-          child: Image.network(
-            image,
+          child: CachedNetworkImage(
+            imageUrl: image,
             fit: BoxFit.cover,
+            errorWidget: (context, url, error) => AssetsHelper.image('404'),
+            progressIndicatorBuilder: (context, url, progress) =>
+                const Center(child: CircularProgressIndicator()),
           ),
         ),
       ),

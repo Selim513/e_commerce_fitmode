@@ -17,7 +17,9 @@ class ProductsDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomPrimariyAppBar(appBarTitle: 'Details'),
+      appBar: const CustomPrimariyAppBar(
+        appBarTitle: 'Details',
+      ),
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(

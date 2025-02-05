@@ -1,12 +1,11 @@
 import 'package:e_commerce_fitmode/core/utils/assets_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomPrimariyAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  const CustomPrimariyAppBar(
-      {super.key, required this.appBarTitle, this.leading});
+  const CustomPrimariyAppBar({super.key, required this.appBarTitle});
   final String appBarTitle;
-  final void Function()? leading;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -15,8 +14,13 @@ class CustomPrimariyAppBar extends StatelessWidget
       titleTextStyle: const TextStyle(
           color: Colors.black, fontSize: 25, fontWeight: FontWeight.w500),
       centerTitle: true,
-      leading:
-          IconButton(onPressed: leading, icon: const Icon(Icons.arrow_back)),
+      leading: IconButton(
+        onPressed: () {
+          GoRouter.of(context).pop();
+          
+        },
+        icon: const Icon(Icons.arrow_back),
+      ),
       actions: [
         IconButton(
             onPressed: () {},
