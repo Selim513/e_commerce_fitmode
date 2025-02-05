@@ -1,3 +1,4 @@
+import 'package:e_commerce_fitmode/core/widgets/custom_cached_network_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class CustomProductDetailImage extends StatelessWidget {
@@ -9,7 +10,7 @@ class CustomProductDetailImage extends StatelessWidget {
       height: MediaQuery.sizeOf(context).height * 0.45,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
-        child: Image.network(image),
+        child: CustomCachedNetworkImage(image: image),
       ),
     );
   }

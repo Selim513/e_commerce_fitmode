@@ -2,7 +2,7 @@ import 'package:e_commerce_fitmode/core/model/app_navigation_bar_model.dart';
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/features/account/presentation/views/account_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
-import 'package:e_commerce_fitmode/features/my_cart/presentation/views/my_cart_view.dart';
+import 'package:e_commerce_fitmode/features/chekout/presentation/views/my_cart_view.dart';
 import 'package:e_commerce_fitmode/features/saved_item/presentation/views/saved_item_view.dart';
 import 'package:e_commerce_fitmode/features/search/presentation/views/search_view.dart';
 import 'package:flutter/material.dart';

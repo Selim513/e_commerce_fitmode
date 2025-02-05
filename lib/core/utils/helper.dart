@@ -9,9 +9,10 @@ void customScaffoldMessenger(BuildContext context,
     content: Center(
         child: Text(
       successMessge,
-      style: AppFontStyle.reqgularFont.copyWith(color: Colors.white),
+      style: AppFontStyle.reqgularFont
+          .copyWith(color: isSuccess ? Colors.white : Colors.black),
     )),
-    backgroundColor: isSuccess ? Colors.green : Colors.red,
+    backgroundColor: isSuccess ? Colors.green : Colors.amber,
   ));
 }
 

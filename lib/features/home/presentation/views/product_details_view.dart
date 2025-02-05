@@ -16,9 +16,11 @@ class ProductsDetails extends StatelessWidget {
   final ProductsModel products;
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       appBar: const CustomPrimariyAppBar(
         appBarTitle: 'Details',
+        isArrowBack: true,
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

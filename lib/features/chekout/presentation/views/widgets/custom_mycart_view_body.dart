@@ -48,7 +48,7 @@
 //   }
 // }
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
-import 'package:e_commerce_fitmode/features/my_cart/presentation/views/widgets/custom_mycart_product_container.dart';
+import 'package:e_commerce_fitmode/features/chekout/presentation/views/widgets/custom_mycart_product_container.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

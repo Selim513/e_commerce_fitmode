@@ -22,6 +22,7 @@ class SearchView extends StatelessWidget {
       child: Scaffold(
         appBar: const CustomPrimariyAppBar(
           appBarTitle: 'Search',
+          isArrowBack: true,
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),

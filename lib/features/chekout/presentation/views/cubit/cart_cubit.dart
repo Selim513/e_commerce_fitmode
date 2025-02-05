@@ -15,23 +15,32 @@ class CartCubit extends Cubit<CartState> {
 
   Future<void> addToCart(ProductsModel product) async {
     try {
-      final productData = product.toJson();
-      productData['quantity'] = 1; // تعيين الكمية الافتراضية
-
-      await fireStore
+      final productDoc = fireStore
           .collection('cart')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection('user-item')
-          .doc(product.id.toString())
-          .set(productData);
+          .doc(product.id.toString());
 
-      emit(CartSuccessState(
-          succMessage: 'The product has been successfully added to the cart'));
+      final productSnapshot = await productDoc.get();
+
+      if (productSnapshot.exists) {
+        emit(CartFailureState(
+            errMessage:
+                "This item is already in your cart! 🛒 Need more? You can update the quantity at My cart."));
+      } else {
+        final productData = product.toJson();
+        productData['quantity'] = 1; // تعيين الكمية الافتراضية
+
+        await productDoc.set(productData);
+
+        emit(CartSuccessState(
+            succMessage:
+                "Great choice! Your item has been added to the cart. 🎉"));
+      }
     } catch (e) {
       emit(CartFailureState(errMessage: e.toString()));
     }
   }
-
 //---------get product--------------
 
   Future<void> fetchCartItems() async {

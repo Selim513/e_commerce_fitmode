@@ -28,7 +28,7 @@ class CustomMyCartProductContainer extends StatelessWidget {
           child: Row(
             children: [
               CustomMyCartProductImage(
-                image: product.image,
+                image: product.image??'',
               ),
               CustomMyCartProductDetails(
                 product: product,

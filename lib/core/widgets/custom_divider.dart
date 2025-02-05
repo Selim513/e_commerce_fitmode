@@ -6,7 +6,9 @@ class CustomDivider extends StatelessWidget {
   const CustomDivider({
     super.key,
     this.color,
-    this.thikNess, this.indent, this.endIndent,
+    this.thikNess,
+    this.indent,
+    this.endIndent,
   });
   final Color? color;
   final double? thikNess;
@@ -17,8 +19,8 @@ class CustomDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Divider(
       color: color ?? AppColors.greycolor,
-      indent: indent ?? 20,
-      endIndent: endIndent ?? 20,
+      indent: indent,
+      endIndent: endIndent,
       thickness: thikNess,
     );
   }
