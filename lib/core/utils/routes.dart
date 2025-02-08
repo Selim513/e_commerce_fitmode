@@ -4,12 +4,13 @@ import 'package:e_commerce_fitmode/features/account/presentation/views/account_v
 import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/password_reset_view.dart';
+import 'package:e_commerce_fitmode/features/chekout/presentation/views/checkout_view.dart';
+import 'package:e_commerce_fitmode/features/chekout/presentation/views/my_cart_view.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/rating.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/product_details_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/product_reviews_view.dart';
-import 'package:e_commerce_fitmode/features/chekout/presentation/views/my_cart_view.dart';
 import 'package:e_commerce_fitmode/features/notification/presentation/views/notification_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/splash_view_screen_view.dart';
@@ -33,6 +34,7 @@ abstract class AppRoute {
   static const String account = '/account';
   static const String reviews = '/reviews';
   static const String cart = '/cart';
+  static const String checkOut = '$cart/checkout';
 
   static GoRouter router =
       GoRouter(initialLocation: splashScreen, routes: <RouteBase>[
@@ -123,9 +125,25 @@ abstract class AppRoute {
       builder: (context, state) => const AccountView(),
     ),
     GoRoute(
-      path: cart,
-      name: cart,
-      builder: (context, state) => const MyCartView(),
-    )
+        path: cart,
+        name: cart,
+        builder: (context, state) => const MyCartView(),
+        routes: <RouteBase>[
+          GoRoute(
+            path: checkOut,
+            name: checkOut,
+            builder: (context, state) {
+              final Map<String, String> data =
+                  state.extra as Map<String, String>;
+
+              return CheckoutView(
+                subtotal: data['subtotal']!,
+                vat: data['vat']!,
+                shipping: data['shipping']!,
+                total: data['total']!,
+              );
+            },
+          )
+        ])
   ]);
 }

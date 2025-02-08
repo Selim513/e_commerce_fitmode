@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../home/data/home_model/products_model/products_model.dart';
+import '../../../../../home/data/home_model/products_model/products_model.dart';
 import 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {

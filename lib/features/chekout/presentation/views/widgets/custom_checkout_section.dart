@@ -1,9 +1,10 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
-import 'package:e_commerce_fitmode/core/widgets/custom_divider.dart';
+import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import 'custom_checkout_detail_row.dart';
+import 'custom_order_details.dart';
 
 class CustomCheckOutSection extends StatelessWidget {
   const CustomCheckOutSection({
@@ -23,15 +24,8 @@ class CustomCheckOutSection extends StatelessWidget {
     return Column(
       spacing: 5,
       children: [
-        CheckOutDetailRow(title: 'Sup-total', price: subtotal),
-        CheckOutDetailRow(title: 'Vat (%)', price: vat),
-        CheckOutDetailRow(title: 'Shipping fee', price: shipping),
-        const CustomDivider(),
-        CheckOutDetailRow(
-          title: 'Total',
-          price: total,
-          fontColor: Colors.black,
-        ),
+        CustomOrderDetail(
+            subtotal: subtotal, vat: vat, shipping: shipping, total: total),
         CustomElevatedButton(
           widget: Row(
             spacing: 10,
@@ -47,7 +41,15 @@ class CustomCheckOutSection extends StatelessWidget {
               )
             ],
           ),
-          onPress: () {},
+          onPress: () {
+            final Map<String, String> data = {
+              'subtotal': subtotal,
+              'vat': vat,
+              'shipping': shipping,
+              'total': total,
+            };
+            GoRouter.of(context).pushNamed(AppRoute.checkOut, extra: data);
+          },
         ),
       ],
     );

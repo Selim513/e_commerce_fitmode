@@ -1,6 +1,6 @@
 import 'package:e_commerce_fitmode/core/widgets/custom_primary_appbar.dart';
-import 'package:e_commerce_fitmode/features/chekout/presentation/views/cubit/cart_cubit.dart';
-import 'package:e_commerce_fitmode/features/chekout/presentation/views/cubit/cart_state.dart';
+import 'package:e_commerce_fitmode/features/chekout/presentation/views/manger/cart_cubit/cart_cubit.dart';
+import 'package:e_commerce_fitmode/features/chekout/presentation/views/manger/cart_cubit/cart_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +15,7 @@ class MyCartView extends StatelessWidget {
     return BlocProvider(
       create: (context) => CartCubit()..fetchCartItems(),
       child: Scaffold(
-        appBar: CustomPrimariyAppBar(
+        appBar: const CustomPrimariyAppBar(
           appBarTitle: 'My Cart',
         ),
         body: SafeArea(

@@ -1,5 +1,5 @@
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
-import 'package:e_commerce_fitmode/features/chekout/presentation/views/cubit/cart_cubit.dart';
+import 'package:e_commerce_fitmode/features/chekout/presentation/views/manger/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
