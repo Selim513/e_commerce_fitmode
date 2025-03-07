@@ -1,6 +1,4 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
-import 'package:e_commerce_fitmode/core/widgets/custom_divider.dart';
-import 'package:e_commerce_fitmode/features/chekout/presentation/views/widgets/custom_checkout_section.dart';
 import 'package:e_commerce_fitmode/features/chekout/presentation/views/widgets/custom_payment_method_container.dart';
 import 'package:flutter/material.dart';
 
@@ -49,9 +47,7 @@ class _CustomPaymentMethodSectionState
           ),
         ),
         selectedIndex == 0 ? const CustomAddCard() : const SizedBox(),
-     
       ],
     );
   }
 }
-

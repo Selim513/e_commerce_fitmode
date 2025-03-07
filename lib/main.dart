@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:e_commerce_fitmode/bloc_observer.dart';
 import 'package:e_commerce_fitmode/core/utils/services_locator.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
@@ -16,7 +17,7 @@ void main() async {
 
   Bloc.observer = AppObserver();
   setup();
-  runApp(const MainApp());
+  runApp(DevicePreview(builder: (context) => const FitMode()));
   FirebaseAuth.instance.authStateChanges().listen((User? user) {
     if (user == null) {
       print('User is currently signed out!');
@@ -26,8 +27,8 @@ void main() async {
   });
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class FitMode extends StatelessWidget {
+  const FitMode({super.key});
 
   @override
   Widget build(BuildContext context) {

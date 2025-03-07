@@ -15,8 +15,7 @@ class CustomProductsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-       onTap: () => GoRouter.of(context)
-                .pushNamed(AppRoute.productDetails, extra: products),
+       onTap: () => GoRouter.of(context).pushNamed(AppRoute.productDetails, extra: products),
       child: Column(
         spacing: 5,
         crossAxisAlignment: CrossAxisAlignment.start,

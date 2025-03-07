@@ -26,7 +26,7 @@ class CustomGoogleRegistrationButton extends StatelessWidget {
             AssetsHelper.icons(name: 'google'),
             const Gap(5),
             Text(
-              '${registrationType} with Google',
+              '$registrationType with Google',
               style: AppFontStyle.reqgularFont,
             )
           ],

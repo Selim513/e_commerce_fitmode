@@ -36,108 +36,124 @@ class AuthForm extends StatelessWidget {
   Widget build(BuildContext context) {
     var authCubit = context.read<AuthCubit>();
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAuthHeaders(title: title, subtitle: subtitle),
-              const Gap(30),
-              Form(
-                key: globlaKey,
-                child: Column(
-                  spacing: 10,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    authSignUp
-                        ? CustomNameTextFormFieldWidget(authCubit: authCubit)
-                        : const SizedBox(),
-                    Text(
-                      'Email',
-                      style: AppFontStyle.reqgularFont,
-                    ),
-                    CustomTextFormField(
-                      fieldType: typeFieldEmail,
-                      dynamicSuffixIcon: true,
-                      validator: (value) {
-                        return checkEmailValidator(value);
-                      },
-                      hinttText: 'Enter your email adress',
-                      controller: authSignUp? authCubit.createAccountEmailController:authCubit.loginEmailController,
-                    ),
-                    Text(
-                      'Password',
-                      style: AppFontStyle.reqgularFont,
-                    ),
-                    CustomTextFormField(
-                      fieldType: typeFieldPassword,
-                      dynamicSuffixIcon: true,
-                      validator: (value) {
-                        return checkPasswordValidator(value);
-                      },
-                      hinttText: 'Enter your password',
-                      controller:authSignUp? authCubit.createAccountPasswordController:authCubit.loginPasswordController,
-                      suffixIcon: GestureDetector(
-                          onTap: () {
-                            authCubit.isPasswordActive =
-                                !authCubit.isPasswordActive;
-                          },
-                          child: Icon(
-                            authCubit.isPasswordActive
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
-                          )),
-                      obsecure: authCubit.isPasswordActive,
-                    ),
-                    authSignUp
-                        ? const CustomPrivacyAndCookieUseText()
-                        : const CustomForgetPasswordSection(),
-                    BlocProvider.of<AuthCubit>(context).state is LoadingState
-                        ? const Center(child: CircularProgressIndicator())
-                        : CustomElevatedButton(
-                            onPress: () {
-                              if (globlaKey.currentState!.validate()) {
-                                print('Validaaaatee');
-                                authSignUp
-                                    ? BlocProvider.of<AuthCubit>(context)
-                                        .createAccount()
-                                    : BlocProvider.of<AuthCubit>(context)
-                                        .sigininAccount();
-                              } else {
-                                print('Errror not validate');
-                              }
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: CustomScrollView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          slivers: [
+            SliverToBoxAdapter(
+                child: CustomAuthHeaders(title: title, subtitle: subtitle)),
+            const SliverToBoxAdapter(child: Gap(30)),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Form(
+                  key: globlaKey,
+                  child: Column(
+                    spacing: 15,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      authSignUp
+                          ? CustomNameTextFormFieldWidget(authCubit: authCubit)
+                          : const SizedBox(),
+                      Text(
+                        'Email',
+                        style: AppFontStyle.reqgularFont,
+                      ),
+                      CustomTextFormField(
+                        fieldType: typeFieldEmail,
+                        dynamicSuffixIcon: true,
+                        validator: (value) {
+                          return checkEmailValidator(value);
+                        },
+                        hinttText: 'Enter your email adress',
+                        controller: authSignUp
+                            ? authCubit.createAccountEmailController
+                            : authCubit.loginEmailController,
+                      ),
+                      Text(
+                        'Password',
+                        style: AppFontStyle.reqgularFont,
+                      ),
+                      CustomTextFormField(
+                        fieldType: typeFieldPassword,
+                        dynamicSuffixIcon: true,
+                        validator: (value) {
+                          return checkPasswordValidator(value);
+                        },
+                        hinttText: 'Enter your password',
+                        controller: authSignUp
+                            ? authCubit.createAccountPasswordController
+                            : authCubit.loginPasswordController,
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              authCubit.isPasswordActive =
+                                  !authCubit.isPasswordActive;
                             },
-                            widget: Text(
-                              authSignUp ? 'Create an account' : 'Login',
-                              style: AppFontStyle.buttonTextStyle,
+                            child: Icon(
+                              authCubit.isPasswordActive
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
                             )),
-                    const CustomOrDivider(),
-                    CustomGoogleRegistrationButton(
-                      registrationType: authSignUp ? 'Sign Up' : 'Login',
-                      onPress: () {},
-                    ),
-                    CustomFacebookRegistrationButton(
-                      registrationType: authSignUp ? 'Sign Up' : 'Login',
-                      onPress: () {},
-                    ),
-                    LoginNavigatorSection(
-                      onPress: () {
-                        if (authSignUp) {
-                          GoRouter.of(context).goNamed(AppRoute.authLoginView);
-                        } else {
-                          GoRouter.of(context)
-                              .goNamed(AppRoute.authCreateAccount);
-                        }
-                      },
-                      checkName: authSignUp ? 'Already' : 'do\'nt',
-                      registrationType: authSignUp ? 'Login' : 'Join',
-                    ),
-                  ],
+                        obsecure: authCubit.isPasswordActive,
+                      ),
+                      authSignUp
+                          ? const CustomPrivacyAndCookieUseText()
+                          : const CustomForgetPasswordSection(),
+                      BlocProvider.of<AuthCubit>(context).state is LoadingState
+                          ? const Center(child: CircularProgressIndicator())
+                          : CustomElevatedButton(
+                              onPress: () {
+                                if (globlaKey.currentState!.validate()) {
+                                  print('Validaaaatee');
+                                  authSignUp
+                                      ? BlocProvider.of<AuthCubit>(context)
+                                          .createAccount()
+                                      : BlocProvider.of<AuthCubit>(context)
+                                          .sigininAccount();
+                                } else {
+                                  print('Errror not validate');
+                                }
+                              },
+                              widget: Text(
+                                authSignUp ? 'Create an account' : 'Login',
+                                style: AppFontStyle.buttonTextStyle,
+                              )),
+                      const CustomOrDivider(),
+                      CustomGoogleRegistrationButton(
+                        registrationType: authSignUp ? 'Sign Up' : 'Login',
+                        onPress: () {},
+                      ),
+                      CustomFacebookRegistrationButton(
+                        registrationType: authSignUp ? 'Sign Up' : 'Login',
+                        onPress: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+            ),
+            const SliverToBoxAdapter(
+              child: Gap(20),
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: LoginNavigatorSection(
+                  onPress: () {
+                    if (authSignUp) {
+                      GoRouter.of(context).goNamed(AppRoute.authLoginView);
+                    } else {
+                      GoRouter.of(context).goNamed(AppRoute.authCreateAccount);
+                    }
+                  },
+                  checkName: authSignUp ? 'Already' : 'do\'nt',
+                  registrationType: authSignUp ? 'Login' : 'Join',
                 ),
               ),
-            ],
-          ),
+            ),
+            const SliverToBoxAdapter(child: Gap(10)),
+          ],
         ),
       ),
     );

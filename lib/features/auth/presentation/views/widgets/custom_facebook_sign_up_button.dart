@@ -23,7 +23,7 @@ class CustomFacebookRegistrationButton extends StatelessWidget {
             AssetsHelper.icons(name: 'facebook'),
             const Gap(5),
             Text(
-              '${registrationType} with Facebook',
+              '$registrationType with Facebook',
               style: AppFontStyle.reqgularFont.copyWith(color: Colors.white),
             )
           ],

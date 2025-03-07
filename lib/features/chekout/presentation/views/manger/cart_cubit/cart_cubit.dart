@@ -76,7 +76,6 @@ class CartCubit extends Cubit<CartState> {
           succMessage:
               'The product has been successfully removed from the cart.'));
     } catch (e) {
-      print('Error: ${e.toString()}');
       emit(
           CartDeletProductFailure(errMessage: 'Failed to delete the product.'));
     }

@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "C:\\Users\\Selim\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\groovy\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\Selim\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "D:\\Flutter Learn\\MyWork\\e_commerce_fitmode\\android\\app\\.cxx\\Debug\\5j6f5j6k\\armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\Selim\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "D:\\Flutter Learn\\MyWork\\e_commerce_fitmode\\android\\app\\.cxx\\Debug\\5j6f5j6k\\armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
