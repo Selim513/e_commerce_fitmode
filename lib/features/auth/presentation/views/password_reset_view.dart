@@ -1,7 +1,7 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/helper.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_elevated_button.dart';
-import 'package:e_commerce_fitmode/core/widgets/custom_text_form_field.dart';
+import 'package:e_commerce_fitmode/core/widgets/custom_auth_text_form_field.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_state_cubit.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/custom_auth_headers.dart';
@@ -43,7 +43,7 @@ class PasswordResetView extends StatelessWidget {
                   }
                 },
                 builder: (context, state) {
-                  return CustomTextFormField(
+                  return CustomAuthTextFormField(
                       validator: (value) {
                         checkEmailValidator(value);
                         return null;

@@ -7,14 +7,16 @@ import 'package:e_commerce_fitmode/core/widgets/custom_primary_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class CustomChangeAdressView extends StatefulWidget {
-  const CustomChangeAdressView({super.key});
+import 'widgets/add_address_modal_bottom_sheet_body.dart';
+
+class AddressView extends StatefulWidget {
+  const AddressView({super.key});
 
   @override
-  State<CustomChangeAdressView> createState() => _CustomChangeAdressViewState();
+  State<AddressView> createState() => _AddressViewState();
 }
 
-class _CustomChangeAdressViewState extends State<CustomChangeAdressView> {
+class _AddressViewState extends State<AddressView> {
   String selectedAddress = "Home";
 
   @override
@@ -70,17 +72,30 @@ class _CustomChangeAdressViewState extends State<CustomChangeAdressView> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: CustomElevatedButton(
+                  color: Colors.white,
+                  onPress: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) => Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom,
+                        ),
+                        child: const CustomAddAddressModalBottomSheetBody(),
+                      ),
+                    );
+                  },
                   widget: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 5,
-                children: [
-                  const Icon(Icons.add),
-                  Text(
-                    'Add New Address',
-                    style: AppFontStyle.reqgularFont,
-                  )
-                ],
-              )),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 5,
+                    children: [
+                      const Icon(Icons.add),
+                      Text(
+                        'Add New Address',
+                        style: AppFontStyle.reqgularFont,
+                      )
+                    ],
+                  )),
             )
           ],
         ),

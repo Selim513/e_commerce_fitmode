@@ -1,7 +1,7 @@
 import 'package:e_commerce_fitmode/constant.dart';
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/validate_helper.dart';
-import 'package:e_commerce_fitmode/core/widgets/custom_text_form_field.dart';
+import 'package:e_commerce_fitmode/core/widgets/custom_auth_text_form_field.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,7 @@ class CustomNameTextFormFieldWidget extends StatelessWidget {
           'Full Name',
           style: AppFontStyle.reqgularFont,
         ),
-        CustomTextFormField(
+        CustomAuthTextFormField(
           fieldType: typeFieldName,
           validator: (value) {
             if (value!.isEmpty) {

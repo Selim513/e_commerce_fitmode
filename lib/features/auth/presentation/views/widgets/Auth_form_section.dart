@@ -3,7 +3,7 @@ import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/helper.dart';
 import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_elevated_button.dart';
-import 'package:e_commerce_fitmode/core/widgets/custom_text_form_field.dart';
+import 'package:e_commerce_fitmode/core/widgets/custom_auth_text_form_field.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_state_cubit.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/cusom_forget_password_section.dart';
@@ -59,7 +59,7 @@ class AuthForm extends StatelessWidget {
                         'Email',
                         style: AppFontStyle.reqgularFont,
                       ),
-                      CustomTextFormField(
+                      CustomAuthTextFormField(
                         fieldType: typeFieldEmail,
                         dynamicSuffixIcon: true,
                         validator: (value) {
@@ -74,7 +74,7 @@ class AuthForm extends StatelessWidget {
                         'Password',
                         style: AppFontStyle.reqgularFont,
                       ),
-                      CustomTextFormField(
+                      CustomAuthTextFormField(
                         fieldType: typeFieldPassword,
                         dynamicSuffixIcon: true,
                         validator: (value) {

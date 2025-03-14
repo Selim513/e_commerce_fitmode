@@ -4,8 +4,8 @@ import 'package:e_commerce_fitmode/core/utils/helper.dart';
 import 'package:e_commerce_fitmode/core/utils/validate_helper.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({
+class CustomAuthTextFormField extends StatefulWidget {
+  const CustomAuthTextFormField({
     super.key,
     this.onChanged,
     this.suffixIcon,
@@ -28,10 +28,11 @@ class CustomTextFormField extends StatefulWidget {
   final bool? isLogin;
 
   @override
-  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+  State<CustomAuthTextFormField> createState() =>
+      _CustomAuthTextFormFieldState();
 }
 
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
+class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
   bool check = false;
   bool isValid = true;
 
