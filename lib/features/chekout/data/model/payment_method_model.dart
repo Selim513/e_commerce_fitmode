@@ -11,5 +11,5 @@ class PaymentMethodModel {
 final List<PaymentMethodModel> paymetnMethod = [
   PaymentMethodModel(title: 'Card', icon: Icons.credit_card),
   PaymentMethodModel(title: 'Cash', icon: FluentIcons.money_16_filled),
-  PaymentMethodModel(title: 'Pay', icon: Icons.apple)
+  PaymentMethodModel(title: 'PayPal', icon: Icons.paypal)
 ];

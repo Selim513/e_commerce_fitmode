@@ -4,18 +4,16 @@ import 'package:e_commerce_fitmode/features/account/presentation/views/account_v
 import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/password_reset_view.dart';
-import 'package:e_commerce_fitmode/features/chekout/presentation/views/checkout_view.dart';
 import 'package:e_commerce_fitmode/features/chekout/presentation/views/my_cart_view.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
-import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/rating.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/home_view.dart';
 import 'package:e_commerce_fitmode/features/home/presentation/views/product_details_view.dart';
-import 'package:e_commerce_fitmode/features/home/presentation/views/product_reviews_view.dart';
 import 'package:e_commerce_fitmode/features/notification/presentation/views/notification_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/get_started_view.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/splash_view_screen_view.dart';
 import 'package:e_commerce_fitmode/features/saved_item/presentation/views/saved_item_view.dart';
 import 'package:e_commerce_fitmode/features/search/presentation/views/search_view.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRoute {
@@ -26,7 +24,7 @@ abstract class AppRoute {
   static const String authLoginView = '$auth/login';
   static const String resetPassword = '$auth/reset-password';
   static const String home = '/home';
-  static const String productDetails = '$home/productDetails';
+  static const String productDetails = '/productDetails';
   static const String bottomNavBar = '/navBar';
   static const String notification = '/notification';
   static const String search = '/search';
@@ -34,7 +32,7 @@ abstract class AppRoute {
   static const String account = '/account';
   static const String reviews = '/reviews';
   static const String cart = '/cart';
-  static const String checkOut = '$cart/checkout';
+  static const String checkOut = '/checkout';
 
   static GoRouter router =
       GoRouter(initialLocation: splashScreen, routes: <RouteBase>[
@@ -73,36 +71,62 @@ abstract class AppRoute {
       ],
     ),
     GoRoute(
-        path: home,
-        name: home,
-        builder: (context, state) => const HomeView(),
-        routes: <RouteBase>[
-          GoRoute(
-              path: productDetails,
-              name: productDetails,
-              builder: (context, state) {
-                final products = state.extra as ProductsModel;
-                return ProductsDetails(
-                  products: products,
-                );
-              },
-              routes: <RouteBase>[
-                GoRoute(
-                  path: reviews,
-                  name: reviews,
-                  builder: (context, state) {
-                    final reviews = state.extra as Rating;
-                    return ProductReviewsView(
-                      rate: reviews,
-                    );
-                  },
-                )
-              ]),
-        ]),
+      path: home,
+      name: home,
+      builder: (context, state) => const HomeView(),
+    ),
+    GoRoute(
+      path: productDetails,
+      name: productDetails,
+      builder: (context, state) {
+        if (state.extra is ProductsModel) {
+          print("Received extra: >${state.extra}");
+
+          final products = state.extra as ProductsModel;
+          return ProductsDetails(products: products);
+        } else {
+          return const Scaffold(
+            body: Center(child: Text("خطأ: لا توجد بيانات المنتج")),
+          );
+        }
+      },
+    ),
+    // GoRoute(
+    //     path: home,
+    //     name: home,
+    //     builder: (context, state) => const HomeView(),
+    //     routes: <RouteBase>[
+    //       GoRoute(
+    //           path: productDetails,
+    //           name: productDetails,
+    //           builder: (context, state) {
+    //             if (state.extra is ProductsModel) {
+    //               final products = state.extra as ProductsModel;
+    //               return ProductsDetails(products: products);
+    //             } else {
+    //               return const Scaffold(
+    //                 body: Center(child: Text("خطأ: لا توجد بيانات المنتج")),
+    //               );
+    //             }
+    //           },
+    //           routes: <RouteBase>[
+    //             GoRoute(
+    //               path: reviews,
+    //               name: reviews,
+    //               builder: (context, state) {
+    //                 final reviews = state.extra as Rating;
+    //                 return ProductReviewsView(
+    //                   rate: reviews,
+    //                 );
+    //               },
+    //             )
+    //           ]),
+    //     ],
+    //     ),
     GoRoute(
       path: bottomNavBar,
       name: bottomNavBar,
-      builder: (context, state) => const CustomBottomNavBar(),
+      builder: (context, state) => const BottomNavBarView(),
     ),
     GoRoute(
       path: notification,
@@ -125,25 +149,23 @@ abstract class AppRoute {
       builder: (context, state) => const AccountView(),
     ),
     GoRoute(
-        path: cart,
-        name: cart,
-        builder: (context, state) => const MyCartView(),
-        routes: <RouteBase>[
-          GoRoute(
-            path: checkOut,
-            name: checkOut,
-            builder: (context, state) {
-              final Map<String, String> data =
-                  state.extra as Map<String, String>;
+      path: cart,
+      name: cart,
+      builder: (context, state) => const MyCartView(),
+    ),
+    // GoRoute(
+    //   path: checkOut,
+    //   name: checkOut,
+    //   builder: (context, state) {
+    //     // final Map<String, String> data = state.extra as Map<String, String>;
 
-              return CheckoutView(
-                subtotal: data['subtotal']!,
-                vat: data['vat']!,
-                shipping: data['shipping']!,
-                total: data['total']!,
-              );
-            },
-          )
-        ])
+    //     return const CheckoutView(
+    //         // subtotal: data['subtotal']!,
+    //         // vat: data['vat']!,
+    //         // shipping: data['shipping']!,
+    //         // total: data['total']!,
+    //         );
+    //   },
+    // ),
   ]);
 }

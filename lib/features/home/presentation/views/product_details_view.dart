@@ -3,6 +3,7 @@ import 'package:e_commerce_fitmode/core/widgets/custom_divider.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_primary_appbar.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'widgets/custom_add_to_cart_section.dart';
 import 'widgets/custom_detail_product_image.dart';
@@ -16,15 +17,15 @@ class ProductsDetails extends StatelessWidget {
   final ProductsModel products;
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
-      appBar: const CustomPrimariyAppBar(
+      appBar: CustomPrimariyAppBar(
         appBarTitle: 'Details',
         isArrowBack: true,
+        onPressed: () => GoRouter.of(context).pop(),
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
+          child: SingleChildScrollView(   
             child: Column(
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.start,

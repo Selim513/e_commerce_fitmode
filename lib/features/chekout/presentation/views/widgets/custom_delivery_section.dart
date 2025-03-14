@@ -1,5 +1,7 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/assets_helper.dart';
+import 'package:e_commerce_fitmode/core/utils/navigator_services.dart';
+import 'package:e_commerce_fitmode/features/chekout/presentation/views/widgets/custom_change_address_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -15,10 +17,14 @@ class CustomDeliverySection extends StatelessWidget {
           children: [
             Text('Delivery Address', style: AppFontStyle.titleFont20),
             const Spacer(),
-            Text(
-              'Change',
-              style: AppFontStyle.underLineText,
-            ),
+            TextButton(
+              onPressed: () => AppNavigatorServices.push(context,
+                  screen: const CustomChangeAdressView()),
+              child: Text(
+                'Change',
+                style: AppFontStyle.underLineText,
+              ),
+            )
           ],
         ),
         Row(

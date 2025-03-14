@@ -6,8 +6,8 @@ import '../../../data/model/payment_method_model.dart';
 import 'custom_card_section.dart';
 
 class CustomPaymentMethodSection extends StatefulWidget {
-  const CustomPaymentMethodSection({super.key});
-
+  const CustomPaymentMethodSection({super.key, this.onSelect});
+  final Function(int)? onSelect;
   @override
   State<CustomPaymentMethodSection> createState() =>
       _CustomPaymentMethodSectionState();
@@ -16,7 +16,6 @@ class CustomPaymentMethodSection extends StatefulWidget {
 class _CustomPaymentMethodSectionState
     extends State<CustomPaymentMethodSection> {
   int? selectedIndex = 0;
-  @override
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,6 +37,9 @@ class _CustomPaymentMethodSectionState
               onTap: () {
                 selectedIndex = index;
                 setState(() {});
+                if (widget.onSelect != null) {
+                  widget.onSelect!(index);
+                }
               },
               child: CustomPaymentMethodContainer(
                 detail: paymetnMethod[index],

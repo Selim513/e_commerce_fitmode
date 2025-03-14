@@ -1,9 +1,9 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
+import 'package:e_commerce_fitmode/core/utils/navigator_services.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
+import 'package:e_commerce_fitmode/features/home/presentation/views/product_details_view.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../../core/utils/routes.dart';
 import 'cusotm_product_item_with_saved_icon.dart';
 
 class CustomProductsItem extends StatelessWidget {
@@ -15,7 +15,8 @@ class CustomProductsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-       onTap: () => GoRouter.of(context).pushNamed(AppRoute.productDetails, extra: products),
+      onTap: () => AppNavigatorServices.push(context,
+          screen: ProductsDetails(products: products)),
       child: Column(
         spacing: 5,
         crossAxisAlignment: CrossAxisAlignment.start,

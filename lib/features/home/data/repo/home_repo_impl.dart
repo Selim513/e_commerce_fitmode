@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce_fitmode/constant.dart';
 import 'package:e_commerce_fitmode/core/errors/server_error.dart';
-import 'package:e_commerce_fitmode/core/utils/api_services.dart';
+import 'package:e_commerce_fitmode/core/utils/api/api_services.dart';
 import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:e_commerce_fitmode/features/home/data/repo/home_repo.dart';
 import 'package:either_dart/src/either.dart';

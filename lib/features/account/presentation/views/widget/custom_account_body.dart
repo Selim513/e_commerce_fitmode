@@ -14,7 +14,7 @@ class CustomAccountBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         CustomContainerAccountListItem(
           title: accountDetailsList[0].title,

@@ -1,23 +1,20 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
-import 'package:e_commerce_fitmode/core/utils/routes.dart';
+import 'package:e_commerce_fitmode/core/utils/navigator_services.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_elevated_button.dart';
+import 'package:e_commerce_fitmode/features/chekout/data/model/checkout_order_details_model/checkout_order_details.dart';
+import 'package:e_commerce_fitmode/features/chekout/presentation/views/checkout_view.dart';
+import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import 'custom_order_details.dart';
 
 class CustomCheckOutSection extends StatelessWidget {
   const CustomCheckOutSection({
     super.key,
-    required this.subtotal,
-    required this.vat,
-    required this.shipping,
-    required this.total,
+    required this.checkOutOrderDetails, required this.productmodel,
   });
-  final String subtotal;
-  final String vat;
-  final String shipping;
-  final String total;
+  final CheckOutOrderDetails checkOutOrderDetails;
+  final List<ProductsModel> productmodel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +22,10 @@ class CustomCheckOutSection extends StatelessWidget {
       spacing: 5,
       children: [
         CustomOrderDetail(
-            subtotal: subtotal, vat: vat, shipping: shipping, total: total),
+            subtotal: checkOutOrderDetails.subtotal,
+            vat: checkOutOrderDetails.vat,
+            shipping: checkOutOrderDetails.shipping,
+            total: checkOutOrderDetails.total),
         CustomElevatedButton(
           widget: Row(
             spacing: 10,
@@ -42,13 +42,14 @@ class CustomCheckOutSection extends StatelessWidget {
             ],
           ),
           onPress: () {
-            final Map<String, String> data = {
-              'subtotal': subtotal,
-              'vat': vat,
-              'shipping': shipping,
-              'total': total,
-            };
-            GoRouter.of(context).pushNamed(AppRoute.checkOut, extra: data);
+            AppNavigatorServices.push(context,
+                screen: CheckoutView(
+                  checkoutDetails: CheckOutOrderDetails(
+                      subtotal: checkOutOrderDetails.subtotal,
+                      vat: checkOutOrderDetails.vat,
+                      shipping: checkOutOrderDetails.shipping,
+                      total: checkOutOrderDetails.total),
+                ));
           },
         ),
       ],
