@@ -24,7 +24,6 @@ void payPalMehodCheckout(BuildContext context,
       .toList();
   Navigator.of(context).push(MaterialPageRoute(
     builder: (BuildContext context) => PaypalCheckoutView(
-      
       sandboxMode: true,
       clientId: ApiKeys.clietnId,
       secretKey: ApiKeys.paypalSecretKey,
@@ -47,6 +46,8 @@ void payPalMehodCheckout(BuildContext context,
       onSuccess: (Map params) async {
         log("onSuccess: $params");
         Navigator.pop(context);
+        customScaffoldMessenger(context,
+            successMessge: '✅ Payment successful!', isSuccess: true);
       },
       onError: (error) {
         log("onError: $error");
@@ -55,9 +56,9 @@ void payPalMehodCheckout(BuildContext context,
       },
       onCancel: () {
         print('cancelled:');
+        Navigator.pop(context);
         customScaffoldMessenger(context,
             successMessge: 'Cancelled', isSuccess: false);
-        Navigator.pop(context);
       },
     ),
   ));
