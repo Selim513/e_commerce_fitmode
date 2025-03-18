@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:e_commerce_fitmode/bloc_observer.dart';
 import 'package:e_commerce_fitmode/core/utils/services_locator.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:e_commerce_fitmode/features/my_orders/data/hive_model/my_order_product_list_model.dart';
 import 'package:e_commerce_fitmode/features/on_boarding/presentation/views/splash_view_screen_view.dart';
 import 'package:e_commerce_fitmode/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,9 +10,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(MyOrderProductListAdapter());
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   Bloc.observer = AppObserver();

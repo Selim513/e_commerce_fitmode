@@ -6,6 +6,7 @@ import 'package:e_commerce_fitmode/features/chekout/presentation/views/widgets/c
 import 'package:e_commerce_fitmode/features/chekout/presentation/views/widgets/custom_order_summary_section.dart';
 import 'package:e_commerce_fitmode/features/chekout/presentation/views/widgets/custom_payment_method_section.dart';
 import 'package:e_commerce_fitmode/features/chekout/presentation/views/widgets/custom_paypal_method_checkout.dart';
+import 'package:e_commerce_fitmode/features/home/data/home_model/products_model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -13,8 +14,10 @@ class CheckOutViewBody extends StatefulWidget {
   const CheckOutViewBody({
     super.key,
     required this.checkoutDetails,
+    required this.product,
   });
   final CheckOutOrderDetails checkoutDetails;
+  final List<ProductsModel> product;
 
   @override
   State<CheckOutViewBody> createState() => _CheckOutViewBodyState();
@@ -54,7 +57,9 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
               ),
               onPress: () {
                 if (selectedPaymentIndex == 2) {
-                  payPalMehodCheckout(context, checkoutDetails);
+                  payPalMehodCheckout(context,
+                      checkoutDetails: checkoutDetails,
+                      productList: widget.product);
                 }
               },
             )

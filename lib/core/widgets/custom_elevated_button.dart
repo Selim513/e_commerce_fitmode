@@ -7,16 +7,20 @@ class CustomElevatedButton extends StatelessWidget {
     this.onPress,
     this.color,
     this.borderSide,
+    this.height,
+    this.width,
   });
   final Widget widget;
   final void Function()? onPress;
   final Color? color;
   final BorderSide? borderSide;
+  final double? height;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 55,
-      width: double.infinity,
+      width: width ?? double.infinity,
+      height: height ?? 60,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               shape: ContinuousRectangleBorder(

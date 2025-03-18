@@ -11,7 +11,8 @@ import 'custom_order_details.dart';
 class CustomCheckOutSection extends StatelessWidget {
   const CustomCheckOutSection({
     super.key,
-    required this.checkOutOrderDetails, required this.productmodel,
+    required this.checkOutOrderDetails,
+    required this.productmodel,
   });
   final CheckOutOrderDetails checkOutOrderDetails;
   final List<ProductsModel> productmodel;
@@ -23,7 +24,7 @@ class CustomCheckOutSection extends StatelessWidget {
       children: [
         CustomOrderDetail(
             subtotal: checkOutOrderDetails.subtotal,
-            vat: checkOutOrderDetails.vat,
+            // vat: checkOutOrderDetails.vat,
             shipping: checkOutOrderDetails.shipping,
             total: checkOutOrderDetails.total),
         CustomElevatedButton(
@@ -44,9 +45,10 @@ class CustomCheckOutSection extends StatelessWidget {
           onPress: () {
             AppNavigatorServices.push(context,
                 screen: CheckoutView(
+                  product: productmodel,
                   checkoutDetails: CheckOutOrderDetails(
                       subtotal: checkOutOrderDetails.subtotal,
-                      vat: checkOutOrderDetails.vat,
+                      // vat: checkOutOrderDetails.vat,
                       shipping: checkOutOrderDetails.shipping,
                       total: checkOutOrderDetails.total),
                 ));

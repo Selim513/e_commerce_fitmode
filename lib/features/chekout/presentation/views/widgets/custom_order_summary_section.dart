@@ -26,7 +26,9 @@ class CustomOrderSummary extends StatelessWidget {
           style: AppFontStyle.titleFont20,
         ),
         CustomOrderDetail(
-            subtotal: checkoutDetails.subtotal, vat: checkoutDetails.vat, shipping: checkoutDetails.shipping, total: checkoutDetails.total),
+            subtotal: checkoutDetails.subtotal, 
+            // vat: checkoutDetails.vat,
+             shipping: checkoutDetails.shipping, total: checkoutDetails.total),
         const Gap(10),
         Row(
           children: [

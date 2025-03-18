@@ -1,11 +1,13 @@
 import 'package:e_commerce_fitmode/constant.dart';
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
 import 'package:e_commerce_fitmode/core/utils/helper.dart';
-import 'package:e_commerce_fitmode/core/utils/routes.dart';
-import 'package:e_commerce_fitmode/core/widgets/custom_elevated_button.dart';
+import 'package:e_commerce_fitmode/core/utils/navigator_services.dart';
 import 'package:e_commerce_fitmode/core/widgets/custom_auth_text_form_field.dart';
+import 'package:e_commerce_fitmode/core/widgets/custom_elevated_button.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_state_cubit.dart';
+import 'package:e_commerce_fitmode/features/auth/presentation/views/create_account_view.dart';
+import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/cusom_forget_password_section.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/custom_facebook_sign_up_button.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/custom_google_sign_up_button.dart';
@@ -15,7 +17,6 @@ import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/logi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 
 import 'custom_auth_headers.dart';
 import 'custom_name_form_field_widget.dart';
@@ -142,9 +143,13 @@ class AuthForm extends StatelessWidget {
                 child: LoginNavigatorSection(
                   onPress: () {
                     if (authSignUp) {
-                      GoRouter.of(context).goNamed(AppRoute.authLoginView);
+                      AppNavigatorServices.pushReplacement(context,
+                          screen: const LoginView());
+                      // GoRouter.of(context).goNamed(AppRoute.authLoginView);
                     } else {
-                      GoRouter.of(context).goNamed(AppRoute.authCreateAccount);
+                      AppNavigatorServices.pushReplacement(context,
+                          screen: const CreateAccountView());
+                      // GoRouter.of(context).goNamed(AppRoute.authCreateAccount);
                     }
                   },
                   checkName: authSignUp ? 'Already' : 'do\'nt',

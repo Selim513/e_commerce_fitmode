@@ -1,7 +1,9 @@
 import 'package:e_commerce_fitmode/core/utils/helper.dart';
+import 'package:e_commerce_fitmode/core/utils/navigator_services.dart';
 import 'package:e_commerce_fitmode/core/utils/routes.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/cubit/auth_state_cubit.dart';
+import 'package:e_commerce_fitmode/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce_fitmode/features/auth/presentation/views/widgets/auth_form_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,17 +14,17 @@ class CreateAccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-            var createAccountGlobalKey = GlobalKey<FormState>();
+    var createAccountGlobalKey = GlobalKey<FormState>();
 
     return Scaffold(
         body: BlocConsumer<AuthCubit, AuthenticationState>(
       listener: (context, state) {
         if (state is CreateAccountSuccessState) {
-          
           customScaffoldMessenger(context,
               successMessge: state.successMessage, isSuccess: true);
-
-          GoRouter.of(context).replaceNamed(AppRoute.authLoginView);
+          AppNavigatorServices.pushReplacement(context,
+              screen: const LoginView());
+          // GoRouter.of(context).replaceNamed(AppRoute.authLoginView);
         } else if (state is CreateAccountFailureState) {
           debugPrint('Account has been created =========${state.errorMessage}');
           customScaffoldMessenger(context,

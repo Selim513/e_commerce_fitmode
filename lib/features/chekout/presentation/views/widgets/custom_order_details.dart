@@ -7,13 +7,13 @@ class CustomOrderDetail extends StatelessWidget {
   const CustomOrderDetail({
     super.key,
     required this.subtotal,
-    required this.vat,
+    // required this.vat,
     required this.shipping,
     required this.total,
   });
 
   final String subtotal;
-  final String vat;
+  // final String vat;
   final String shipping;
   final String total;
 
@@ -23,7 +23,7 @@ class CustomOrderDetail extends StatelessWidget {
       spacing: 5,
       children: [
         CheckOutDetailRow(title: 'Sup-total', price: subtotal),
-        CheckOutDetailRow(title: 'Vat (%)', price: vat),
+        // CheckOutDetailRow(title: 'Vat (%)', price: vat),
         CheckOutDetailRow(title: 'Shipping fee', price: shipping),
         const CustomDivider(),
         CheckOutDetailRow(

@@ -9,6 +9,16 @@ abstract class AppNavigatorServices {
         ));
   }
 
+  static void pushRemoveUntil(BuildContext context, {required Widget screen}) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => screen,
+      ),
+      (Route<dynamic> route) => false,
+    );
+  }
+
   static void push(BuildContext context, {required Widget screen}) {
     Navigator.push(
         context,

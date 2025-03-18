@@ -19,7 +19,7 @@ class AppFormatters {
     return subtotal * 0.15; // 15% VAT
   }
 
- static double calculateTotal(double subtotal, double vat, double shippingFee) {
-    return subtotal + vat + shippingFee;
+ static double calculateTotal(double subtotal, double shippingFee) {
+    return subtotal  + shippingFee;
   }
 }

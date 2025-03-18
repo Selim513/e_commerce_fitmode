@@ -16,12 +16,11 @@ class CustomMyCartViewBody extends StatelessWidget {
     const double shippingFee = 25.0;
 
     final double subtotal = AppFormatters.calculateSubtotal(product);
-    final double vat = AppFormatters.calculateVat(subtotal);
-    final double total =
-        AppFormatters.calculateTotal(subtotal, vat, shippingFee);
+    // final double vat = AppFormatters.calculateVat(subtotal);
+    final double total = AppFormatters.calculateTotal(subtotal, shippingFee);
 
     final String formattedSubtotal = AppFormatters.formatPrice(subtotal);
-    final String formattedVat = AppFormatters.formatPrice(vat);
+    // final String formattedVat = AppFormatters.formatPrice(vat);
     final String formattedShippingFee = AppFormatters.formatPrice(shippingFee);
     final String formattedTotal = AppFormatters.formatPrice(total);
 
@@ -42,7 +41,7 @@ class CustomMyCartViewBody extends StatelessWidget {
             productmodel: product,
             checkOutOrderDetails: CheckOutOrderDetails(
               subtotal: formattedSubtotal,
-              vat: formattedVat,
+              // vat: formattedVat,
               shipping: formattedShippingFee,
               total: formattedTotal,
             ),

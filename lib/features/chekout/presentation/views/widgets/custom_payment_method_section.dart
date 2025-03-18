@@ -1,4 +1,5 @@
 import 'package:e_commerce_fitmode/core/utils/app_fonts.dart';
+import 'package:e_commerce_fitmode/core/utils/media_query.dart';
 import 'package:e_commerce_fitmode/features/chekout/presentation/views/widgets/custom_payment_method_container.dart';
 import 'package:flutter/material.dart';
 
@@ -27,12 +28,12 @@ class _CustomPaymentMethodSectionState
           style: AppFontStyle.titleFont20,
         ),
         SizedBox(
-          height: 40,
+          height: CustomMediaQuery.mediaQueryHeight(context, num: 0.05),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 3,
+            itemCount: paymetnMethod.length,
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {
                 selectedIndex = index;
